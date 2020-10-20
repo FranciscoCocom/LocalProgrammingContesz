@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/estilo.css">
+    <title>Editar Edición de Eventos</title>
+  </head>
+  <body>
+<!----------- Esta es la parte del menú ------------------------------------------------------------------------------------>
+    <header>
+          <nav>
+            <label class="logo">Local Programming Contesz</label>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Sección 1</a></li>
+                <li><a href="#">Sección 2</a></li>
+                <li><a href="#">Sección 3</a></li>
+                <li><a href="#">Iniciar Sesión</a></li>
+            </ul>
+          </nav>
+    </header>
+<!----------- Esta es la parte del menú ------------------------------------------------------------------------------------>
+
+<!----------- Esta es la parte del Formulario ------------------------------------------------------------------------------------>
+    <main>
+      <section>
+        <h1>EDITAR EDICIONES DE EVENTOS</h1>
+        <form>
+          <fieldset>
+            <label>id. Evento:</label>
+            <input type="number" value="1" name="nousuario" readonly>
+            <br>
+            <label>Nombre del evento:</label>
+            <input type="text" name="nombre"  placeholder="Nombre Del Evento" maxlength="50" required>
+            <br>
+            <label for="start">Fecha de Registro:</label>
+            <input type="date" name="fechaRegistro" value="2018-07-22" min="2018-01-01" max="2025-12-31" required>
+            <br>
+            <label for="start">Fecha del Evento:</label>
+            <input type="date" name="fechaEvento" value="2018-07-22" min="2018-01-01" max="2025-12-31" required>
+            <br>
+            <label for="start">Hora de Inicio:</label>
+            <input type="time" name="horaInicio" value="00:00" min="07:00" max="18:00" required>
+            <br>
+            <label for="start">Hora de Fin:</label>
+            <input type="time" name="horaFin" value="00:00" min="07:00" max="18:00" required>
+            <br>
+            <button>Atras</button>
+            <button>Cancelar</button>
+            <button>Guardar</button>
+          </fieldset>
+        </form>
+      </section>
+    </main>
+<!----------- Esta es la parte del menú ------------------------------------------------------------------------------------>
+  </body>
+</html>
