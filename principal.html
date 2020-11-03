@@ -2,23 +2,125 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="css/estilo.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
     <title>Local Programming Contesz</title>
+    <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+    width: 100%;
+    height: 500px;
+  }
+  </style>
   </head>
   <body>
-<!--- Esta es la parte del menú ------------------------------------------------------------------------------------>
-<header>
-      <nav>
-        <label class="logo">Local Programming Contesz</label>
-        <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Sección 1</a></li>
-            <li><a href="#">Sección 2</a></li>
-            <li><a href="#">Sección 3</a></li>
-            <li><a href="#">Iniciar Sesión</a></li>
-        </ul>
-      </nav>
-</header>
-<!--- Esta es la parte del menú ------------------------------------------------------------------------------------>
+    <!--- Esta es la parte del menú ------------------------------------------------------------------------------------>
+    <header><!-- Aquí empieza el MENU -->
+              <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+              <!-- Brand -->
+              <a class="navbar-brand" href="#">Local Programming Contesz</a>
+
+                    <!-- Links -->
+                    <ul class="navbar-nav ml-auto">
+                      <!-- Dropdown -->
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbardrop" data-toggle="dropdown">
+                            ADMINISTRACIÓN
+                          </a>
+
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Docentes</a>
+                            <a class="dropdown-item" href="Usuarios/consultaUsuarios.html">Usuarios</a>
+                          </div>
+                      </li>
+
+                          <!-- Dropdown -->
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbardrop" data-toggle="dropdown">
+                                CONCURSOS
+                              </a>
+
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Eventos</a>
+                                <a class="dropdown-item" href="#">Categorías</a>
+                              </div>
+                          </li>
+
+                          <!-- Dropdown -->
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbardrop" data-toggle="dropdown">
+                                PARTICIPANTES
+                              </a>
+
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Alumnos</a>
+                                <a class="dropdown-item" href="#">Equipos</a>
+                                <a class="dropdown-item" href="#">Carreras</a>
+                              </div>
+                          </li>
+
+                          <!-- Dropdown -->
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbardrop" data-toggle="dropdown">
+                                PROBLEMAS
+                              </a>
+
+                              <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Problemas</a>
+                                <a class="dropdown-item" href="#">Problemas Propuestos</a>
+                                <a class="dropdown-item" href="#">Problemas Resueltos</a>
+                              </div>
+                          </li>
+
+                          <li class="nav-item">
+                            <a class="nav-link btn btn-secondary" href="#">INICIAR SESIÓN</a>
+                          </li>
+                    </ul>
+              </nav>
+    </header><!-- Aquí Termina el MENU -->
+    <!--- Esta es la parte del menú ------------------------------------------------------------------------------------>
+    <main>
+      <div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+
+  <!-- The slideshow -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="imagenes/carusel1.jpg" alt="Los Angeles">
+      <div class="carousel-caption">
+   <h3>Los Angeles</h3>
+   <p>We had such a great time in LA!</p>
+ </div>
+    </div>
+    <div class="carousel-item">
+      <img src="imagenes/carusel2.jpg" alt="Chicago">
+    </div>
+    <div class="carousel-item">
+      <img src="imagenes/carusel3.jpg" alt="New York">
+    </div>
+  </div>
+
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+
+</div>
+    </main>
+
+<!-- Estas lineas son necesarias para que funcione el MODAL-->
+<script src="../js/jquery-3.5.1.min.js"> </script><!-- Estas lineas son necesarias para que funcione el MODAL-->
+<script src="../js/popper.min.js"> </script><!-- Estas lineas son necesarias para que funcione el MODAL-->
+<script src="../js/bootstrap.min.js"> </script><!-- Estas lineas son necesarias para que funcione el MODAL-->
+<!-- Estas lineas son necesarias para que funcione el MODAL-->
   </body>
 </html>
