@@ -1,0 +1,21 @@
+.anuncio{
+  height: 400px;
+  width: 100%;
+  padding: 50px;
+  background: #F5FAFC;
+}
+
+.imagen{
+  height: 100px;
+  width: 100px;
+  display: inline-block;
+}
+.texto{
+  display: inline-block;
+}
+
+.footer{
+  height: 100px;
+  width: 100%;
+  background: #3C81F0;
+}
