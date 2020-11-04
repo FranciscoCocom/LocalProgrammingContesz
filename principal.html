@@ -30,7 +30,7 @@
                           </a>
 
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Docentes</a>
+                            <a class="dropdown-item" href="Docentes/consultaDocentes.html">Docentes</a>
                             <a class="dropdown-item" href="Usuarios/consultaUsuarios.html">Usuarios</a>
                           </div>
                       </li>
@@ -43,7 +43,7 @@
 
                               <div class="dropdown-menu">
                                 <a class="dropdown-item" href="Edicion_Eventos/consultaEdicionEventos.html">Eventos</a>
-                                <a class="dropdown-item" href="#">Categorías</a>
+                                <a class="dropdown-item" href="Categorias/consultaCategorias.html">Categorías</a>
                               </div>
                           </li>
 
@@ -54,9 +54,9 @@
                               </a>
 
                               <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Alumnos</a>
-                                <a class="dropdown-item" href="#">Equipos</a>
-                                <a class="dropdown-item" href="#">Carreras</a>
+                                <a class="dropdown-item" href="Alumnos/consultaAlumnos.html">Alumnos</a>
+                                <a class="dropdown-item" href="Equipos/consultaEquipos.html">Equipos</a>
+                                <a class="dropdown-item" href="Carreras/consultaCarreras.html">Carreras</a>
                               </div>
                           </li>
 
@@ -67,14 +67,14 @@
                               </a>
 
                               <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Problemas</a>
-                                <a class="dropdown-item" href="#">Problemas Propuestos</a>
-                                <a class="dropdown-item" href="#">Problemas Resueltos</a>
+                                <a class="dropdown-item" href="Problemas/consultaProblemas.html">Problemas</a>
+                                <a class="dropdown-item" href="Problemas_Propuestos/consultaProblemasPropuestos.html">Problemas Propuestos</a>
+                                <a class="dropdown-item" href="Problemas_Resueltos/consultaProblemasResueltos.html">Problemas Resueltos</a>
                               </div>
                           </li>
 
                           <li class="nav-item">
-                            <a class="nav-link btn btn-secondary" href="#">INICIAR SESIÓN</a>
+                            <a data-toggle="modal" data-target="#myModalIniciarSesion" class="nav-link btn btn-secondary" href="#">INICIAR SESIÓN</a>
                           </li>
                     </ul>
               </nav>
@@ -138,7 +138,45 @@
     </div>
 
 
-<!-- Aquí empieza el footer -->
+    <!-- Aquí empieza la parte del  Modal AGREGAR --------------------------------------------------------------------->
+    <div class="modal" id="myModalIniciarSesion">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">INICIAR SESIÓN</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <form>
+                      <div class="form-group">
+                        <label>Email:</label>
+                        <input class="form-control" type="email" name="email" placeholder="ejemplo@ejemplo" maxlength="100" required>
+                      </div>
+                      <div class="form-group">
+                        <label>Contraseña:</label>
+                        <input class="form-control" type="password" name="password" placeholder="password" maxlength="20" required>
+                      </div>
+
+                      <button class="btn btn-success">LOG IN</button>
+                </form>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <!-- Aquí Termina la parte del  Modal AGREGAR --------------------------------------------------------------------->
+
+
+    <!-- Aquí empieza el footer -->
     <footer class="bg-primary">
       <div class="container">
 
