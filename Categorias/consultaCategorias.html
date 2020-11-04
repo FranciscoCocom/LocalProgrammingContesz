@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <title>Categorias</title>
+  </head>
+  <body>
+<!--- Esta es la parte del menú ------------------------------------------------------------------------------------>
+<header><!-- Aquí empieza el MENU -->
+          <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+          <!-- Brand -->
+          <a class="navbar-brand" href="../principal.html">Local Programming Contesz</a>
+
+                <!-- Links -->
+                <ul class="navbar-nav ml-auto">
+                  <!-- Dropdown -->
+                  <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbardrop" data-toggle="dropdown">
+                        ADMINISTRACIÓN
+                      </a>
+
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="../Docentes/consultaDocentes.html">Docentes</a>
+                        <a class="dropdown-item" href="../Usuarios/consultaUsuarios.html">Usuarios</a>
+                      </div>
+                  </li>
+
+                      <!-- Dropdown -->
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbardrop" data-toggle="dropdown">
+                            CONCURSOS
+                          </a>
+
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="../Edicion_Eventos/consultaEdicionEventos.html">Eventos</a>
+                                <a class="dropdown-item" href="../Categorias/consultaCategorias.html">Categorías</a>
+                              </div>
+                      </li>
+
+                      <!-- Dropdown -->
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbardrop" data-toggle="dropdown">
+                            PARTICIPANTES
+                          </a>
+
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="../Alumnos/consultaAlumnos.html">Alumnos</a>
+                            <a class="dropdown-item" href="../Equipos/consultaEquipos.html">Equipos</a>
+                            <a class="dropdown-item" href="../Carreras/consultaCarreras.html">Carreras</a>
+                          </div>
+                      </li>
+
+                      <!-- Dropdown -->
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbardrop" data-toggle="dropdown">
+                            PROBLEMAS
+                          </a>
+
+                          <div class="dropdown-menu">
+                            <a class="dropdown-item" href="consultaProblemas.html">Problemas</a>
+                                <a class="dropdown-item" href="../Problemas_Propuestos/consultaProblemasPropuestos.html">Problemas Propuestos</a>
+                                <a class="dropdown-item" href="../Problemas_Resueltos/consultaProblemasResueltos.html">Problemas Resueltos</a>
+                              </div>
+                      </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link btn btn-secondary" href="#">INICIAR SESIÓN</a>
+                      </li>
+                </ul>
+          </nav>
+</header><!-- Aquí Termina el MENU -->
+<!--- Esta es la parte del menú ------------------------------------------------------------------------------------>
+
+<!--- Esta es la parte de CONSULTA, Aquí es la tabla que enlista los elementos de la tabla-------------------------->
+<!--- Los botones: Registrar, Editar y ELiminar activan cada uno a su modal correspondiente------------------------->
+<!--- A los botones: Registrar, Editar y ELiminar se les tiene que agregar a cada uno un data-target------------------------->
+<main>
+    <section>
+        <div class="container">
+            <h1>LISTA DE CATEGORIAS</h1>
+            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModalAltaCategoria">Registrar Categoria</button>
+            <table class="table table-bordered">
+                <th>Id Categoria</th>
+                <th>Nombre</th>
+                <th>Semestre Limite</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+                <tr>
+                    <td>1</td>
+                    <td>Avanzada</td>
+                    <td>7</td>
+                    <td><a data-toggle="modal" data-target="#myModalEditarCategoria" class="btn btn-warning btn-sm">Editar</a></td>
+                    <td><a data-toggle="modal" data-target="#myModalEliminarCategoria" class="btn btn-danger btn-sm">Eliminar</a></td>
+                </tr>
+            </table>
+          </div>
+    </section>
+</main>
+<!--- Esta es la parte de CONSULTA, Aquí es la tabla que enlista los elementos de la tabla-------------------------->
+
+<!-- Aquí empieza la parte del  Modal AGREGAR --------------------------------------------------------------------->
+<div class="modal" id="myModalAltaCategoria">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">AGREGAR CATEGORIA</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form>
+                  <div class="form-group">
+                    <label>Id Categoria:</label>
+                    <input class="form-control" type="number" value="1" name="idcategoria" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Nombre:</label>
+                    <input class="form-control" type="text" name="nombre" placeholder="nombre" maxlength="50" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Semestre Limite:</label>
+                    <input class="form-control" type="number" name="semestrelimite" placeholder="Semestre Limite" required>
+                  </div>
+                  <button class="btn btn-success">Registrar</button>
+            </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Aquí Termina la parte del  Modal AGREGAR --------------------------------------------------------------------->
+
+<!-- Aquí empieza Modal EDITAR ------------------------------------------------------------------------------------>
+<div class="modal" id="myModalEditarCategoria">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">EDITAR CATEGORIA</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label>Id Categoria:</label>
+                <input class="form-control" type="number" value="1" name="idcategoria" required>
+              </div>
+
+              <div class="form-group">
+                <label>Nombre:</label>
+                <input class="form-control" type="text" name="nombre" placeholder="nombre" maxlength="50" required>
+              </div>
+
+              <div class="form-group">
+                <label>Semestre Limite:</label>
+                <input class="form-control" type="number" name="semestrelimite" placeholder="Semestre Limite" required>
+              </div>
+
+                  <button class="btn btn-success">Guardar</button>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Aquí termina Modal EDITAR ------------------------------------------------------------------------------------>
+
+<!-- Aquí empieza Modal ELIMINAR --------------------------------------------------------------------------------------------------->
+<div class="modal" id="myModalEliminarCategoria">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">ELIMINAR CATEGORIA</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form>
+                <p>¿Estas seguro de eliminar la Categoria: 1</p>
+
+                  <button class="btn btn-success">Eliminar</button>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- Aquí termina Modal ELIMINAR --------------------------------------------------------------------------------------------------->
+
+
+
+<!-- Estas lineas son necesarias para que funcione el MODAL-->
+<script src="../js/jquery-3.5.1.min.js"> </script><!-- Estas lineas son necesarias para que funcione el MODAL-->
+<script src="../js/popper.min.js"> </script><!-- Estas lineas son necesarias para que funcione el MODAL-->
+<script src="../js/bootstrap.min.js"> </script><!-- Estas lineas son necesarias para que funcione el MODAL-->
+<!-- Estas lineas son necesarias para que funcione el MODAL-->
+  </body>
+</html>
