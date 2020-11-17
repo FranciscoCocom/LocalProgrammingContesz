@@ -23,7 +23,7 @@ function realizarOperacion()
             consultaGeneral();
             break;
         case "u":
-            obj=new Edificio(
+            obj=new Usuario(
               document.getElementById("nousuario").value,
               document.getElementById("nombre").value,
               document.getElementById("sexo").value,
