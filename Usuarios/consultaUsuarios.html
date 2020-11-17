@@ -209,7 +209,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form>
+        <form onsubmit="return validar(this)">
                 <div class="form-group">
                   <label>No. Usuario:</label>
                   <input class="form-control" type="number" value="1" name="nousuario" >
@@ -217,7 +217,7 @@
 
                 <div class="form-group">
                   <label>Nombre completo:</label>
-                  <input class="form-control" type="text" name="nombre"  placeholder="Nombre Completo" maxlength="50" required>
+                  <input class="form-control" type="text" name="nombre"  placeholder="Nombre Completo" maxlength="50">
                 </div>
 
                 <div class="form-group form-check">
@@ -228,17 +228,17 @@
 
                 <div class="form-group">
                   <label>Telefono:</label>
-                  <input class="form-control" type="tel" name="telefono" placeholder="###-###-####" maxlength="12" required>
+                  <input class="form-control" type="tel" name="telefono" placeholder="###-###-####" maxlength="12">
                 </div>
 
                 <div class="form-group">
                   <label>Email:</label>
-                  <input class="form-control" type="email" name="email" placeholder="ejemplo@ejemplo" maxlength="100" required>
+                  <input class="form-control" type="email" name="email" placeholder="ejemplo@ejemplo" maxlength="100">
                 </div>
 
                 <div class="form-group">
                   <label>Estatus</label>
-                  <input class="form-control" type="text" name="estatus" placeholder="Estatus" maxlength="100" required>
+                  <input class="form-control" type="text" name="estatus" placeholder="Estatus" maxlength="100">
                 </div>
 
                 <div class="form-group">
@@ -251,12 +251,12 @@
 
                 <div class="form-group">
                   <label>Contraseña:</label>
-                  <input class="form-control" type="password" name="password" placeholder="password" maxlength="20" required>
+                  <input class="form-control" type="password" name="password" placeholder="password" maxlength="20">
                 </div>
 
                 <div class="form-group">
                   <label>Repite la Contraseña:</label>
-                  <input class="form-control" type="password" name="pwdrepite" placeholder="password" maxlength="20" required>
+                  <input class="form-control" type="password" name="pwdrepite" placeholder="password" maxlength="20">
                 </div>
 
                   <button onclick="realizarOperacion()" class="btn btn-success">Guardar</button>
