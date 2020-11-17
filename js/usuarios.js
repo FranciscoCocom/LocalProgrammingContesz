@@ -13,6 +13,8 @@ function validar(form)
             return false;
         }
         else{
+           var op="c";
+           realizarOperacion();
            return true;
         }
 }
@@ -112,7 +114,8 @@ function validarPasssword(pwd1,pwd2){
         return '';
     }
 }
-/*
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////---Aquí se crea el objeto---////////////////////////////////////////////
 var arrayUsuarios=[];
 class Usuario{
   constructor(id,nombreCompleto,sexo,telefono,email,estatus,tipoUsuario,password,pwdrepite) //Aquí van los parametros de entrada,(las variables necesarias para construir la clase)
@@ -174,4 +177,5 @@ class Usuario{
       return null;
   }
 }
-*/
+///////////////////////////////////////////---Aquí se crea el objeto---///////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////

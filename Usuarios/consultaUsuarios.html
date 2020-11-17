@@ -124,7 +124,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form onsubmit="return validar(this)"><!-- En esta parte llamas al metodo que realiza las validaciones -->
+        <form  onsubmit="return validar(this)"><!-- En esta parte llamas al metodo que realiza las validaciones -->
                   <div class="form-group">
                     <label>No. Usuario:</label>
                     <input id="nousuario" class="form-control" type="number" value="1" name="nousuario" >
@@ -177,7 +177,10 @@
                   <div id="notificaciones">
 
                   </div>
-                  <button onclick="realizarOperacion()" class="btn btn-success">Guardar</button><!--  Aquí llasmas al metodo que se encuentra en el usuariosGUI.js -->
+                  <div class="modal-header">
+                        <button type="submit">Guardar</button><!--  Aquí llasmas al metodo que se encuentra en el usuariosGUI.js -->
+                  </div>
+
 
             </form>
 
