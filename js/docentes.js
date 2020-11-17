@@ -6,7 +6,6 @@ function validar(form)
         cad+=validarEspecialidad(form.especialidad.value);
         cad+=validarCedula(form.cedula.value);
         cad+=validarIdCarrera(form.idcarrera.value);
-        //cad+=validarTipoUsuario(parseInt(form.tipousuario.options[form.tipousuario.options.selectedIndex].value));
         if(cad!=''){
             document.getElementById("notificaciones").innerHTML='<p>'+cad+'</p>';
             return false;
@@ -88,7 +87,7 @@ function validarIdCarrera(cad)
 }
 
 //---------------------------------------------------------------------------------------
-/*var arrayDocentes=[];
+var arrayDocentes=[];
 class Docente{
   constructor(noDocente,noUsuario,escolaridad,especialidad,cedula,idCarrera) //Aquí van los parametros de entrada,(las variables necesarias para construir la clase)
   {
@@ -147,4 +146,3 @@ class Docente{
 
 
 }
-*/

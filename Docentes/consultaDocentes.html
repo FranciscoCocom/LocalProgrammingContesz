@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <title>Docentes</title>
     <script src="../js/docentes.js "></script>
+    <script src="../js/docentesGUI.js"></script>
+    <title>Docentes</title>
   </head>
   <body>
 <!--- Esta es la parte del menú ------------------------------------------------------------------------------------>
@@ -100,7 +101,7 @@
                     <td>IA</td>
                     <td>8643054</td>
                     <td>2</td>
-                    <td><a data-toggle="modal" data-target="#myModalEditarDocente" class="btn btn-warning btn-sm">Editar</a></td>
+                    <td><a onclick="editar()" data-toggle="modal" data-target="#myModalEditarDocente" class="btn btn-warning btn-sm">Editar</a></td>
                     <td><a data-toggle="modal" data-target="#myModalEliminarDocente" class="btn btn-danger btn-sm">Eliminar</a></td>
                 </tr>
             </table>
@@ -122,7 +123,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form>
+        <form onsubmit="return validar(this)">
                   <div class="form-group">
                     <label>No. Docente:</label>
                     <input class="form-control" type="number" value="1" name="nodocente" readonly>
@@ -153,7 +154,12 @@
                     <input class="form-control" type="number" name="idcarrera"  required>
                   </div>
 
-                  <button class="btn btn-success">Registrar</button>
+                  <div id="notificaciones">
+
+                  </div>
+                  <div class="modal-header">
+                        <button type="submit">Guardar</button>
+                  </div>
             </form>
       </div>
 
@@ -180,7 +186,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form>
+        <form onsubmit="return validar(this)">
           <div class="form-group">
             <label>No. Docente:</label>
             <input class="form-control" type="number" value="1" name="nodocente" readonly>
@@ -211,7 +217,7 @@
             <input class="form-control" type="number" name="idcarrera"  required>
           </div>
 
-                  <button class="btn btn-success">Guardar</button>
+          <button onclick="realizarOperacion()" class="btn btn-success">Guardar</button>
         </form>
       </div>
 
