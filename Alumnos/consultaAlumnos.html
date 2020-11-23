@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/alumnos.js"></script>
     <title>Alumnos</title>
   </head>
   <body>
@@ -115,28 +116,31 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form>
+        <form onsubmit="return validar(this)">
                   <div class="form-group">
                     <label>No. Control:</label>
-                    <input class="form-control" type="number" value="#" name="nocontrol" maxlength="8" required>
+                    <input class="form-control" type="number" name="nocontrol">
                   </div>
 
                   <div class="form-group">
                     <label>No. Usuario:</label>
-                    <input class="form-control" type="number" name="nousuario" placeholder="No. Usuario" readonly required>
+                    <input class="form-control" type="number" name="nousuario" placeholder="No. Usuario">
                   </div>
 
                   <div class="form-group">
                     <label>Semestre:</label>
-                    <input class="form-control" type="number" name="semestre" placeholder="# Semestre" required>
+                    <input class="form-control" type="number" name="semestre" placeholder="# Semestre">
                   </div>
 
                   <div class="form-group">
                     <label>Id Carrera:</label>
-                    <input class="form-control" type="number" name="idcarrera" placeholder="Id Carrera" required>
+                    <input class="form-control" type="number" name="idcarrera" placeholder="Id Carrera">
                   </div>
 
-                  <button class="btn btn-success">Registrar</button>
+                  <div style="color:red" id="notificacionescrear">
+
+                  </div>
+                  <button type="submit" class="btn btn-success" name="accion" value="crear">Guardar</button>
             </form>
       </div>
 
@@ -163,27 +167,31 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form>
+        <form onsubmit="return validar(this)">
             <div class="form-group">
                 <label>No. Control:</label>
-                <input class="form-control" type="number" value="#" name="nocontrol" maxlength="8" required>
+                <input id="nocontrol" class="form-control" type="number" name="nocontrol">
               </div>
 
               <div class="form-group">
                 <label>No. Usuario:</label>
-                <input class="form-control" type="number" name="nousuario" placeholder="No. Usuario" readonly required>
+                <input id="nousuario" class="form-control" type="number" name="nousuario" placeholder="No. Usuario">
               </div>
 
               <div class="form-group">
                 <label>Semestre:</label>
-                <input class="form-control" type="number" name="semestre" placeholder="# Semestre" required>
+                <input id="semestre" class="form-control" type="number" name="semestre" placeholder="# Semestre">
               </div>
 
               <div class="form-group">
                 <label>Id Carrera:</label>
-                <input class="form-control" type="number" name="idcarrera" placeholder="Id Carrera" required>
+                <input id="idcarrera" class="form-control" type="number" name="idcarrera" placeholder="Id Carrera">
               </div>
-              <button class="btn btn-success">Guardar</button>
+
+              <div style="color:red" id="notificacioneseditar">
+
+              </div>
+              <button  type="submit" class="btn btn-success" name="accion" value="editar">Guardar</button>
     </form>
   </div>
 
