@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/edicionEventos.js"></script>
     <title>LISTA DE LAS EDICIONES DE EVENTOS</title>
   </head>
   <body>
@@ -119,37 +120,42 @@
 
       <!-- Modal body ESTA ES LA PARTE DEL CUERPO DEL MODAL-->
       <div class="modal-body">
-        <form>
+        <form onsubmit="return validar(this)">
                           <div class="form-group">
                             <label>id. Evento:</label>
-                            <input class="form-control" type="number" value="1" name="nousuario" readonly>
+                            <input class="form-control" type="number" name="idevento">
                           </div>
 
                           <div class="form-group">
                             <label>Nombre del evento:</label>
-                            <input class="form-control" type="text" name="nombre"  placeholder="Nombre Del Evento" maxlength="50" required>
+                            <input class="form-control" type="text" name="nombre"  placeholder="Nombre Del Evento">
                           </div>
 
                           <div class="form-group">
                             <label for="start">Fecha de Registro:</label>
-                            <input class="form-control" type="date" name="fechaRegistro" value="2018-07-22" min="2018-01-01" max="2025-12-31" required>
+                            <input class="form-control" type="date" name="fecharegistro">
                           </div>
 
                           <div class="form-group">
                             <label for="start">Fecha del Evento:</label>
-                            <input class="form-control" type="date" name="fechaEvento" value="2018-07-22" min="2018-01-01" max="2025-12-31" required>
+                            <input class="form-control" type="date" name="fechaevento" >
                           </div>
 
                           <div class="form-group">
                             <label for="start">Hora de Inicio:</label>
-                            <input class="form-control" type="time" name="horaInicio" value="00:00" min="07:00" max="18:00" required>
+                            <input class="form-control" type="time" name="horainicio" >
                           </div>
 
                           <div class="form-group">
                             <label for="start">Hora de Fin:</label>
-                            <input class="form-control" type="time" name="horaFin" value="00:00" min="07:00" max="18:00" required>
+                            <input class="form-control" type="time" name="horafin" >
                           </div>
-                  <button class="btn btn-success">Registrar</button>
+
+
+                          <div style="color:red" id="notificacionescrear">
+
+                          </div>
+                          <button type="submit" class="btn btn-success" name="accion" value="crear">Guardar</button>
             </form>
       </div>
       <!-- Modal body ESTA ES LA PARTE DEL CUERPO DEL MODAL-->
@@ -178,38 +184,41 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form>
+        <form onsubmit="return validar(this)">
                     <div class="form-group">
                       <label>id. Evento:</label>
-                      <input class="form-control" type="number" value="1" name="nousuario" readonly>
+                      <input class="form-control" type="number" value="1" name="idevento">
                     </div>
 
                     <div class="form-group">
                       <label>Nombre del evento:</label>
-                      <input class="form-control" type="text" name="nombre"  placeholder="Nombre Del Evento" maxlength="50" required>
+                      <input class="form-control" type="text" name="nombre"  placeholder="Nombre Del Evento" maxlength="50" >
                     </div>
 
                     <div class="form-group">
                       <label for="start">Fecha de Registro:</label>
-                      <input class="form-control" type="date" name="fechaRegistro" value="2018-07-22" min="2018-01-01" max="2025-12-31" required>
+                      <input class="form-control" type="date" name="fecharegistro"min="2018-01-01" max="2025-12-31" >
                     </div>
 
                     <div class="form-group">
                       <label for="start">Fecha del Evento:</label>
-                      <input class="form-control" type="date" name="fechaEvento" value="2018-07-22" min="2018-01-01" max="2025-12-31" required>
+                      <input class="form-control" type="date" name="fechaevento" min="2018-01-01" max="2025-12-31" >
                     </div>
 
                     <div class="form-group">
                       <label for="start">Hora de Inicio:</label>
-                      <input class="form-control" type="time" name="horaInicio" value="00:00" min="07:00" max="18:00" required>
+                      <input class="form-control" type="time" name="horainicio"min="07:00" max="18:00" >
                     </div>
 
                     <div class="form-group">
                       <label for="start">Hora de Fin:</label>
-                      <input class="form-control" type="time" name="horaFin" value="00:00" min="07:00" max="18:00" required>
+                      <input class="form-control" type="time" name="horafin"min="07:00" max="18:00">
                     </div>
 
-                  <button class="btn btn-success">Guardar</button>
+                    <div style="color:red" id="notificacioneseditar">
+
+                    </div>
+                    <button  type="submit" class="btn btn-success" name="accion" value="editar">Guardar</button>
         </form>
       </div>
 

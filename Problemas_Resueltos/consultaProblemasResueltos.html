@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/problemasResueltos.js"></script>
     <title>Problemas Resueltos</title>
   </head>
   <body>
@@ -119,33 +120,36 @@
 
           <!-- Modal body -->
           <div class="modal-body">
-            <form>
+            <form onsubmit="return validar(this)">
                       <div class="form-group">
                         <label>Problema Resuelto:</label>
-                        <input class="form-control" type="number" value="1" name="problemaresuelto" readonly>
+                        <input class="form-control" type="number"  name="problemaresuelto">
                       </div>
 
                       <div class="form-group">
                         <label>Tiempo de ejecución:</label>
-                        <input class="form-control" type="number" value="1" name="tiempoejecucion" readonly>
+                        <input class="form-control" type="number" name="tiempoejecucion">
                       </div>
 
                       <div class="form-group">
                         <label>No. Equipo:</label>
-                        <input class="form-control" type="number" value="1" name="noequipo" required>
+                        <input class="form-control" type="number"  name="noequipo">
                       </div>
 
                       <div class="form-group">
                         <label>Puntos:</label>
-                        <input class="form-control"type="number" value="1" name="puntos" required>
+                        <input class="form-control"type="number"  name="puntos">
                       </div>
 
                       <div class="form-group">
                         <label>No. Problemas propuestos:</label>
-                        <input class="form-control" type="number" value="1" name="puntos" required>
+                        <input class="form-control" type="number" name="noproblemaspropuestos">
                       </div>
 
-                      <button class="btn btn-success">Registrar</button>
+                      <div style="color:red" id="notificacionescrear">
+
+                      </div>
+                      <button  type="submit" class="btn btn-success" name="accion" value="crear">Guardar</button>
                 </form>
           </div>
 
@@ -173,35 +177,37 @@
 
           <!-- Modal body -->
           <div class="modal-body">
-            <form>
+            <form onsubmit="return validar(this)">
 
               <div class="form-group">
                 <label>Problema Resuelto:</label>
-                <input class="form-control" type="number" value="1" name="problemaresuelto" readonly>
+                <input class="form-control" type="number" value="1" name="problemaresuelto">
               </div>
 
               <div class="form-group">
                 <label>Tiempo de ejecución:</label>
-                <input class="form-control" type="number" value="1" name="tiempoejecucion" readonly>
+                <input class="form-control" type="number" value="1" name="tiempoejecucion">
               </div>
 
               <div class="form-group">
                 <label>No. Equipo:</label>
-                <input class="form-control" type="number" value="1" name="noequipo" required>
+                <input class="form-control" type="number" value="1" name="noequipo">
               </div>
 
               <div class="form-group">
                 <label>Puntos:</label>
-                <input class="form-control"type="number" value="1" name="puntos" required>
+                <input class="form-control"type="number" value="1" name="puntos">
               </div>
 
               <div class="form-group">
                 <label>No. Problemas propuestos:</label>
-                <input class="form-control" type="number" value="1" name="puntos" required>
+                <input class="form-control" type="number" value="1" name="noproblemaspropuestos">
               </div>
 
+              <div style="color:red" id="notificacioneseditar">
 
-                      <button class="btn btn-success">Guardar</button>
+              </div>
+              <button  type="submit" class="btn btn-success" name="accion" value="editar">Guardar</button>
             </form>
           </div>
 

@@ -8,14 +8,20 @@ function validar(form)
         cad+=validarEstatus(form.estatus.value);
         cad+=validarTipoUsuario(parseInt(form.tipousuario.options[form.tipousuario.options.selectedIndex].value));
         cad+=validarPasssword(form.password.value,form.pwdrepite.value);
+        var accion = form.accion.value;
         if(cad!=''){
             document.getElementById("notificaciones").innerHTML='<p>'+cad+'</p>';
             return false;
         }
         else{
-           var op="c";
-           realizarOperacion();
-           return true;
+          var accion = form.accion.value;
+          if (accion == "crear")
+          {
+            alert("Crear");
+          }else {
+            alert("Editar")
+          }
+         return true;
         }
 }
 

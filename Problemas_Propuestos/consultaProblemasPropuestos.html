@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/problemasPropuestos.js"></script>
     <title> Problemas Propuestos</title>
   </head>
   <body>
@@ -117,28 +118,36 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form>
+        <form onsubmit="return validar(this)">
               <div class="form-group">
                 <label>No. Problemas:</label>
-                <input class="form-control" type="number" placeholder="1" name="noproblemas" readonly>
+                <input class="form-control" type="number"  name="noproblemas">
               </div>
 
               <div class="form-group">
                 <label>No. Problemas Propuestos:</label>
-                <input class="form-control" type="number" placeholder="1" name="noproblemaspropuestos" readonly>
+                <input class="form-control" type="number"  name="noproblemaspropuestos">
               </div>
 
               <div class="form-group">
                 <label>No. Edición:</label>
-                <input class="form-control" type="number" placeholder="1" name="noedicion" readonly>
+                <input class="form-control" type="number" name="noedicion">
               </div>
 
               <div class="form-group">
                 <label>Color del problema:</label>
-                <input type="text"  placeholder="Color del problema" required>
+                <select name="color" class="form-control">
+                    <option id="color">Blanco</option>
+                    <option id="color">azul</option>
+                    <option id="color">Rojo</option>
+                    <option id="color">Negro</option>
+                </select>
               </div>
 
-                  <button class="btn btn-success">Registrar</button>
+              <div style="color:red" id="notificacionescrear">
+
+              </div>
+              <button type="submit" class="btn btn-success" name="accion" value="crear">Guardar</button>
             </form>
       </div>
 
@@ -165,28 +174,36 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form>
+        <form onsubmit="return validar(this)">
           <div class="form-group">
             <label>No. Problemas:</label>
-            <input class="form-control" type="number" placeholder="1" name="noproblemas" readonly>
+            <input class="form-control" type="number" name="noproblemas">
           </div>
 
           <div class="form-group">
             <label>No. Problemas Propuestos:</label>
-            <input class="form-control" type="number" placeholder="1" name="noproblemaspropuestos" readonly>
+            <input class="form-control" type="number" name="noproblemaspropuestos">
           </div>
 
           <div class="form-group">
             <label>No. Edición:</label>
-            <input class="form-control" type="number" placeholder="1" name="noedicion" readonly>
+            <input class="form-control" type="number" name="noedicion">
           </div>
 
           <div class="form-group">
             <label>Color del problema:</label>
-            <input type="text"  placeholder="Color del problema" required>
+            <select name="color" class="form-control">
+                <option id="color">Blanco</option>
+                <option id="color">azul</option>
+                <option id="color">Rojo</option>
+                <option id="color">Negro</option>
+            </select>
           </div>
 
-                  <button class="btn btn-success">Guardar</button>
+          <div style="color:red" id="notificacioneseditar">
+
+          </div>
+          <button  type="submit" class="btn btn-success" name="accion" value="editar">Guardar</button>
         </form>
       </div>
 

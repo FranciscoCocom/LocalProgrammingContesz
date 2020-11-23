@@ -174,12 +174,10 @@
                     <input id="pwdrepite" class="form-control" type="password" name="pwdrepite" placeholder="password" maxlength="20">
                   </div>
 
-                  <div id="notificaciones">
+                  <div style="color:red" id="notificacionescrear">
 
                   </div>
-                  <div class="modal-header">
-                        <button type="submit">Guardar</button><!--  Aquí llasmas al metodo que se encuentra en el usuariosGUI.js -->
-                  </div>
+                  <button type="submit" class="btn btn-success" name="accion" value="crear">Guardar</button>
 
 
             </form>
@@ -195,6 +193,8 @@
   </div>
 </div>
 <!-- Aquí Termina la parte del  Modal AGREGAR --------------------------------------------------------------------->
+
+
 
 <!-- Aquí empieza Modal EDITAR ------------------------------------------------------------------------------------>
 <div class="modal" id="myModalEditarUsuario">
@@ -259,7 +259,10 @@
                   <input class="form-control" type="password" name="pwdrepite" placeholder="password" maxlength="20">
                 </div>
 
-                  <button onclick="realizarOperacion()" class="btn btn-success">Guardar</button>
+                <div style="color:red" id="notificacioneseditar">
+
+                </div>
+                <button  type="submit" class="btn btn-success" name="accion" value="editar">Guardar</button>
         </form>
       </div>
 
