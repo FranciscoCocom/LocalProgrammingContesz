@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/estilo.css">
     <script src="../js/alumnos.js"></script>
     <title>Alumnos</title>
   </head>
@@ -74,6 +75,25 @@
 </header><!-- Aquí Termina el MENU -->
 <!--- Esta es la parte del menú ------------------------------------------------------------------------------------>
 
+<!-- Aquí Empieza el Ajax -->
+<script>
+  function ajax(){
+    const http = new XMLHttpRequest();
+    const url = 'http://localhost/Alumnos/consultaAlumnos.html';
+
+    http.onreadystatechange = function(){
+      if(this.readyState == 4 && this.status == 200){
+        console.log(this.responseText);
+      }
+    }
+    http.open("GET", url);
+    http.send();
+  }
+</script>
+<!-- Aquí termina la función Ajax el Ajax -->
+
+
+
 <!--- Esta es la parte de CONSULTA, Aquí es la tabla que enlista los elementos de la tabla-------------------------->
 <!--- Los botones: Registrar, Editar y ELiminar activan cada uno a su modal correspondiente------------------------->
 <!--- A los botones: Registrar, Editar y ELiminar se les tiene que agregar a cada uno un data-target------------------------->
@@ -95,13 +115,24 @@
                     <td>4</td>
                     <td>2</td>
                     <td><a data-toggle="modal" data-target="#myModalEditarAlumno" class="btn btn-warning btn-sm">Editar</a></td>
-                    <td><a data-toggle="modal" data-target="#myModalEliminarAlumno" class="btn btn-danger btn-sm">Eliminar</a></td>
+                    <td><a onclick="mostrarDiv()"class="btn btn-danger btn-sm">Eliminar</a></td>
                 </tr>
             </table>
           </div>
     </section>
 </main>
 <!--- Esta es la parte de CONSULTA, Aquí es la tabla que enlista los elementos de la tabla-------------------------->
+
+<!-- Aquí va el div que seré el mensaje de eliminar ------------------------------------------------------------>
+<div id="modalEliminacion"class="modalPadreEliminacion">
+  <div class="modalEliminacion">
+  <b>¿SEGURO QUE LO DESEA ELIMINAR?</b>
+  <button onclick="ocultarDiv()" class="btn btn-success">ELIMINAR</button>
+  <button onclick="ocultarDiv()"type="submit" class="btn btn-danger" name="accion" value="crear">CANCELAR</button>
+  </div>
+</div>
+<!-- Aquí va el div que seré el mensaje de eliminar ------------------------------------------------------------>
+
 
 <!-- Aquí empieza la parte del  Modal AGREGAR --------------------------------------------------------------------->
 <div class="modal" id="myModalAltaAlumnos">
@@ -140,7 +171,7 @@
                   <div style="color:red" id="notificacionescrear">
 
                   </div>
-                  <button type="submit" class="btn btn-success" name="accion" value="crear">Guardar</button>
+                  <button onclick="ajax()"type="submit" class="btn btn-success" name="accion" value="crear">Guardar</button>
             </form>
       </div>
 

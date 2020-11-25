@@ -119,3 +119,10 @@ class Alumno
         return null;
     }
 }
+
+function mostrarDiv(){
+    document.getElementById("modalEliminacion").style.display="block";
+}
+function ocultarDiv(){
+    document.getElementById("modalEliminacion").style.display="none";
+}
