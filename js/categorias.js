@@ -6,11 +6,9 @@ function validar(form){
     if(cad!=''){
         document.getElementById("notificaciones" + accion).innerHTML='<p>'+cad+'</p>';
         return false;
-    }
-    else{
+    } else{
         var accion = form.accion.value;
-        if (accion == "crear")
-        {
+        if (accion == "crear"){
           alert("Crear");
         }else {
           alert("Editar")
@@ -19,25 +17,20 @@ function validar(form){
     }
 }
 
-
 function validarIdCategoria(cad)
 {
-    if(cad==1 || cad==2)
-    {
+    if(cad==1 || cad==2){
         return '';
-    }
-    else{
+    }else{
         return "Id de categoria no valido <br>";
     }
 }
 
 function validarNombre(cad)
 {
-    if(cad.length==0)
-    {
+    if(cad.length==0){
         return 'Debes informar el nombre de la Categoria <br>';
-    }
-    else
+    }else
     {
         return '';
     }
@@ -45,15 +38,13 @@ function validarNombre(cad)
 
 function validarSemestreLimite(cad)
 {
-    if(validarIdCategoria==1)
-    {
+    if(validarIdCategoria==1){
         if(cad>=1 && cad<=4){
             return " ";
         }else{
             return "Excediste el semestre limite para la categoria seleccionada";
         }
-    }
-    else if(validarIdCategoria==2){
+    }else if(validarIdCategoria==2){
         if(cad>=5 && cad<=12){
             return " ";
         }else{
@@ -63,12 +54,8 @@ function validarSemestreLimite(cad)
         return "Número de semestre invalido <br>";
     }
 }
-
-
 ///////////////////////////////////Aquí termina la validación///////////////////
-////////////////////////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////Aquí empieza la creación del objeto///////////
 var arrayCategorias=[];
 class Categoria
@@ -79,19 +66,16 @@ class Categoria
         this.nombre=nombre;
         this.semestrelimite=semestrelimite;
     }
-    toString()
-    {
-        return "Id Categoria: "+this.idcategoria+", Nombre: "+this.nombre + ", semestre Limite: " + this.semestrelimite;
+    toString(){
+        return "Id Categoria: "+this.idcategoria+", Nombre: "+this.nombre +
+         ", semestre Limite: " + this.semestrelimite;
     }
 
-    guardar()
-    {
+    guardar() {
         //Almacenará el objeto en la BD
         arrayCategorias.push(this)
     }
-    actualizar()
-
-    {
+    actualizar() {
         for(i=0;i<arrayCategorias.length;i++){
             if(arrayCategorias[i].id==this.id){
                 arrayCategorias[i]=this;
@@ -99,8 +83,7 @@ class Categoria
         }
     }
 
-    eliminar()
-    {
+    eliminar(){
       alert("hola delete");
         for(i=0;i<arrayCategorias.length;i++){
             if(arrayCategorias[i].id==this.id){
@@ -117,4 +100,11 @@ class Categoria
         }
         return null;
     }
+}
+
+function mostrarDiv(){
+    document.getElementById("modalEliminacion").style.display="block";
+}
+function ocultarDiv(){
+    document.getElementById("modalEliminacion").style.display="none";
 }
