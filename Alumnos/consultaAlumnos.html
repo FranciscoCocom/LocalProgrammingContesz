@@ -74,6 +74,25 @@
 </header><!-- Aquí Termina el MENU -->
 <!--- Esta es la parte del menú ------------------------------------------------------------------------------------>
 
+<!-- Aquí Empieza el Ajax -->
+<script>
+  function ajax(){
+    const http = new XMLHttpRequest();
+    const url = 'http://localhost/Alumnos/consultaAlumnos.html';
+
+    http.onreadystatechange = function(){
+      if(this.readyState == 4 && this.status == 200){
+        console.log(this.responseText);
+      }
+    }
+    http.open("GET", url);
+    http.send();
+  }
+</script>
+<!-- Aquí termina la función Ajax el Ajax -->
+
+
+
 <!--- Esta es la parte de CONSULTA, Aquí es la tabla que enlista los elementos de la tabla-------------------------->
 <!--- Los botones: Registrar, Editar y ELiminar activan cada uno a su modal correspondiente------------------------->
 <!--- A los botones: Registrar, Editar y ELiminar se les tiene que agregar a cada uno un data-target------------------------->
@@ -140,7 +159,7 @@
                   <div style="color:red" id="notificacionescrear">
 
                   </div>
-                  <button type="submit" class="btn btn-success" name="accion" value="crear">Guardar</button>
+                  <button onclick="ajax()"type="submit" class="btn btn-success" name="accion" value="crear">Guardar</button>
             </form>
       </div>
 
