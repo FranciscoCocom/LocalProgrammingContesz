@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../js/categorias.js"></script>
     <title>Categorias</title>
   </head>
   <body>
@@ -113,7 +114,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form>
+        <form onsubmit="return validar(this)">
                   <div class="form-group">
                     <label>Id Categoria:</label>
                     <input class="form-control" type="number" value="1" name="idcategoria" required>
@@ -128,7 +129,10 @@
                     <label>Semestre Limite:</label>
                     <input class="form-control" type="number" name="semestrelimite" placeholder="Semestre Limite" required>
                   </div>
-                  <button class="btn btn-success">Registrar</button>
+                  
+                  <div style="color:red" id="notificacionescrear">
+                  </div>
+                  <button type="submit" class="btn btn-success" name ="action" value="crear">Guardar</button>
             </form>
       </div>
 
@@ -155,7 +159,7 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form>
+        <form onsubmit="return validar(this)">
             <div class="form-group">
                 <label>Id Categoria:</label>
                 <input class="form-control" type="number" value="1" name="idcategoria" required>
@@ -170,8 +174,10 @@
                 <label>Semestre Limite:</label>
                 <input class="form-control" type="number" name="semestrelimite" placeholder="Semestre Limite" required>
               </div>
+              <div style="color:red" id="notificacioneseditar">
 
-                  <button class="btn btn-success">Guardar</button>
+              </div>
+              <button  type="submit" class="btn btn-success" name="accion" value="editar">Guardar</button>
         </form>
       </div>
 
