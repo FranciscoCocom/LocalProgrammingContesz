@@ -75,3 +75,9 @@ function validarNoProblemasPropuestos(cad)
         return "Número de problemas propuestos invalido <br>";
     }
 }
+function mostrarDiv(){
+    document.getElementById("modalEliminacion").style.display="block";
+}
+function ocultarDiv(){
+    document.getElementById("modalEliminacion").style.display="none";
+}
