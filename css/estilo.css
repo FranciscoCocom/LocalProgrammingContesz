@@ -19,3 +19,18 @@
   width: 100%;
   background: #3C81F0;
 }
+.modalPadreEliminacion {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  display: none;
+}
+.modalEliminacion{
+  position: absolute;
+  text-align: center;
+  height: 100px;
+  width: 300px;
+  background: #3C81F0;
+  border: 1px;
+  border-radius: 10px;
+}
