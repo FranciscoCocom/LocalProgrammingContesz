@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/estilo.css">
     <script src="../js/carreras.js"></script>
     <title>Carreras</title>
   </head>
@@ -92,14 +93,24 @@
                     <td>1</td>
                     <td>Ingenieria en Sistemas Computacionales</td>
                     <td>ISC</td>
-                    <td><a data-toggle="modal" data-target="#myModalEditarCarrera" class="btn btn-warning btn-sm">Editar</a></td>
-                    <td><a data-toggle="modal" data-target="#myModalEliminarCarrera" class="btn btn-danger btn-sm">Eliminar</a></td>
-                </tr>
+                    <td><a onclick="editar()" data-toggle="modal" data-target="#myModalEditarCarrera" class="btn btn-warning btn-sm">Editar</a></td>
+                    <td><a onclick="mostrarDiv()"class="btn btn-danger btn-sm">Eliminar</a></td>
+                       </tr>
             </table>
           </div>
     </section>
 </main>
 <!--- Esta es la parte de CONSULTA, Aquí es la tabla que enlista los elementos de la tabla-------------------------->
+
+<!-- Aquí va el div que seré el mensaje de eliminar ------------------------------------------------------------>
+<div id="modalEliminacion"class="modalPadreEliminacion">
+  <div class="modalEliminacion">
+  <b>¿SEGURO QUE LO DESEA ELIMINAR?</b>
+  <button onclick="ocultarDiv()" class="btn btn-success">ELIMINAR</button>
+  <button onclick="ocultarDiv()"type="submit" class="btn btn-danger" name="accion" value="crear">CANCELAR</button>
+  </div>
+</div>
+<!-- Aquí va el div que seré el mensaje de eliminar ------------------------------------------------------------>
 
 <!-- Aquí empieza la parte del  Modal AGREGAR --------------------------------------------------------------------->
 <div class="modal" id="myModalAltaCarrera">
@@ -131,7 +142,7 @@
                   </div>
                   <div style="color:red" id="notificacionescrear">
 </div>
-                  <button type="submit" class="btn btn-success">Registrar</button>
+                  <button type="submit" class="btn btn-success" name="accion" value="crear" Guardar></button>
             </form>
       </div>
 
@@ -175,8 +186,8 @@
               </div>
               <div style="color:red" id="notificacioneseditar">
               </div>
-                  <button class="btn btn-success">Guardar</button>
-        </form>
+              <button  type="submit" class="btn btn-success" name="accion" value="editar">Guardar</button>
+            </form>
       </div>
 
       <!-- Modal footer -->
