@@ -1,19 +1,15 @@
 function validar(form)
-{
+{//FALTA HACER CADA UNA DE LAS FUNCIONES Y VERFIFICAR LOS HTML
         cad=validarIdEquipo(form.idequipo.value);
         cad+=validarNombre(form.nombre.value);
         cad+=validarNoDocente(form.nodocente.value);
         cad+=validarPuntosobtenidos(form.puntosobtenidos.value);
         cad+=validarProblemaResuelto(form.problemaresuelto.value);
-        <cad=No. Control integrante1</th>
-        <th>No. Control integrante2</th>
-        <th>No. Control integrante3</th>
-        <th>Id Categoria</th>
-        <th>Id Edicion</th>
-       
-        cad+=validarEstatus(form.estatus.value);
-        cad+=validarTipoUsuario(parseInt(form.tipousuario.options[form.tipousuario.options.selectedIndex].value));
-        cad+=validarPasssword(form.password.value,form.pwdrepite.value);
+        cad+=validarNoControlIntegrante1(form.NoControlIntegrante1.value);
+        cad+=validarNoControlIntegrante2(form.NoControlIntegrante2.value);
+        cad+=validarNoControlIntegrante3(form.NoControlIntegrante3.value);
+        cad+=validarIdCategoria(form.idcategoria.value);
+        cad+=validarIdEdicion(form.idedicion.value);
         var accion = form.accion.value;
         if(cad!=''){
             document.getElementById("notificaciones").innerHTML='<p>'+cad+'</p>';
@@ -31,7 +27,7 @@ function validar(form)
         }
 }
 
-function validarNoUsuario(cad)
+function validarIdEquipo(cad)
 {
     if(cad>=1)
     {
@@ -39,7 +35,7 @@ function validarNoUsuario(cad)
     }
     else
     {
-        return "Número de usuario invalido <br>"
+        return "Id de Equipo invalido <br>"
     }
 }
 
@@ -47,7 +43,7 @@ function validarNombre(cad)
 {
     if(cad.length==0)
     {
-        return 'Debes informar el nombre de la persona <br>';
+        return 'Debes informar el nombre del equipo <br>';
     }
     else
     {
@@ -55,53 +51,33 @@ function validarNombre(cad)
     }
 }
 
-function validarSexo(cad)
+function validarNoDocente(cad)
 {
-    if(cad.length==0)
+    if(cad>=1)
     {
-        return 'Debes elegir un sexo<br>';
+        return ' ';
     }
-    return '';
+    return 'Debes ingresar un No de Docente ';
 }
 
-function validarTelefono(cad)
+function validarPuntosobtenidos(cad)
 {
     var ban=false;
-    if(cad.length==12)
+    if(cad>=0 && cad<=100)
     {
-       var patron=/\d{3}-\d{3}-\d{4}/;
-       if(patron.test(cad))
-       {
+       
            return '';
-       }
-       else
-       {
-            return 'El número de telefono no cumple el patrón ###-###-####.<br>';
-       }
     }
     else{
-        return 'El telefono debe ser de 12 caracteres. <br>'
+        return 'Solo se puede dar un maximo de calificacion de 100. <br>'
     }
 }
 
-function validarEmail(cad)
-{
-    var patron=/[a-z]\w*@\w+.\w+.*/;
-    if(patron.test(cad))
-    {
-        return '';
-    }
-    else
-    {
-        return "La cuenta de correo electrónico no tiene el formato correcto. <br>";
-    }
-}
-
-function validarEstatus(cad)
+function validarProblemaResuelto(cad)
 {
     if(cad.length==0)
     {
-        return 'Debes informar el estatus.<br>';
+        return 'Debes informar el problema que se resolvio.<br>';
     }
     else
     {
@@ -109,81 +85,125 @@ function validarEstatus(cad)
     }
 }
 
-function validarTipoUsuario(cad)
+function validarNoControlIntegrante1(cad)
 {
-    if(cad==0)
+    var patron=/\d{8}/;
+    if(patron.test(cad))
     {
-        return 'Debes elegir un tipo de usuario<br>';
-    }
-    return '';
-}
-
-function validarPasssword(pwd1,pwd2){
-    if(pwd1!=pwd2){
-        return "Las contraseñas no coinciden. <br>";
+        if(cad==validarNoControlIntegrante2.cad || cad==validarNoControlIntegrante3.cad){
+            return 'Deben ser No de control diferentes ';
+        }else{
+            return ' ';
+        }
     }
     else{
+        return "El número de control debe ser de 8 dígitos <br>";
+    }
+}
+
+function validarNoControlIntegrante2(cad)
+{
+    var patron=/\d{8}/;
+    if(patron.test(cad))
+    {
+        if(cad==validarNoControlIntegrante1.cad || cad==validarNoControlIntegrante3.cad){
+            return 'Deben ser No de control diferentes ';
+        }else{
+            return ' ';
+        }
+    }
+    else{
+        return "El número de control debe ser de 8 dígitos <br>";
+    }
+}
+
+function validarNoControlIntegrante3(cad){
+    var patron=/\d{8}/;
+    if(patron.test(cad))
+    {
+        if(cad==validarNoControlIntegrante2.cad || cad==validarNoControlIntegrante1.cad){
+            return 'Deben ser No de control diferentes ';
+        }else{
+            return ' ';
+        }
+    }
+    else{
+        return "El número de control debe ser de 8 dígitos <br>";
+    }
+}
+
+function validarIdEdicion(){
+    if(cad>=1)
+    {
         return '';
+    }
+    else
+    {
+        return "Id de Edicion invalido <br>"
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////---Aquí se crea el objeto---////////////////////////////////////////////
-var arrayUsuarios=[];
-class Usuario{
-  constructor(id,nombreCompleto,sexo,telefono,email,estatus,tipoUsuario,password,pwdrepite) //Aquí van los parametros de entrada,(las variables necesarias para construir la clase)
+var arrayEquipos=[];
+class Equipo{
+  constructor(idEquipo,nombre,noDocente,puntosObtenidos,problemasResueltos,NoControlIntegrante1,NoControlIntegrante2,NoControlIntegrante3,idCategoria,idEdicion) //Aquí van los parametros de entrada,(las variables necesarias para construir la clase)
   {
-      this.id=id;
-      this.nombreCompleto=nombreCompleto;
-      this.sexo=sexo;
-      this.telefono=telefono;
-      this.email=email;
-      this.estatus=estatus;
-      this.tipoUsuario=tipoUsuario;
-      this.password=password;
-      this.pwdrepite=pwdrepite;
+      this.idEquipo=idEquipo;
+      this.nombre=nombre;
+      this.noDocente=noDocente;
+      this.puntosObtenidos=puntosObtenidos;
+      this.problemasResueltos=problemasResueltos;
+      this.NoControlIntegrante1=NoControlIntegrante1;
+      this.NoControlIntegrante2=NoControlIntegrante2;
+      this.NoControlIntegrante3=NoControlIntegrante3;
+      this.idCategoria=idCategoria;
+      this.idEdicion=idEdicion;
   }
 
   toString() //Aquí se crea el método ToString
   {
-    return "ID: " + this.id + ", Nombre: " + this.nombreCompleto + ", Sexo: " + this.sexo + ", Telefono: " + this.telefono + ", Email: " + this.email + ", Estatus: " + this.estatus + ", tipoUsuario: " + this.tipoUsuario;
+    return "Id Equipo: " + this.idEquipo + ", Nombre: " + this.nombre + 
+    ", No Docente: " + this.noDocente + ", Puntos Obtenidos: " + this.puntosObtenidos
+    + ", Problemas Resueltos: " + this.problemasResueltos + ", No Control Integrante1: " + this.NoControlIntegrante1
+    + ", No Control Integrante2: " + this.NoControlIntegrante2+", No Control Integrante3: "+this.NoControlIntegrante3
+    +", Id Categoria: "+this.idCategoria+", Id Edicion: "+this.idEdicion;
   }
 
   guardar()
   {
       //Almacenará el objeto en la BD
-      arrayUsuarios.push(this)
+      arrayEquipos.push(this)
   }
 
   actualizar()
   {
-      for(i=0;i<arrayUsuarios.length;i++)
+      for(i=0;i<arrayEquipos.length;i++)
       {
-          if(arrayUsuarios[i].id == this.id)
+          if(arrayEquipos[i].id == this.id)
           {
-              arrayUsuarios[i]=this;
+              arrayEquipos[i]=this;
           }
       }
   }
 
   eliminar()
   {
-      for(i=0;i<arrayUsuarios.length;i++)
+      for(i=0;i<arrayEquipos.length;i++)
       {
-          if(arrayUsuarios[i].id==this.id)
+          if(arrayEquipos[i].id==this.id)
           {
-              //delete arrayEdificios[i];
-              arrayUsuarios.splice(i,1);
+              arrayEquipos.splice(i,1);
           }
       }
   }
 
   consultar()
   {
-      for(i=0;i<arrayUsuarios.length;i++)
+      for(i=0;i<arrayEquipos.length;i++)
       {
-          if(arrayUsuarios[i].id==this.id)
+          if(arrayEquipos[i].id==this.id)
           {
-              return arrayUsuarios[i];
+              return arrayEquipos[i];
           }
       }
       return null;
