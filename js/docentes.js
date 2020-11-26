@@ -29,23 +29,19 @@ function validarNoDocente(cad)
 
 function validarNoUsuario(cad)
 {
-    if(cad>=1)
-    {
+    if(cad>=1) {
         return '';
-    }
-    else
+    }else
     {
         return "Número de Usuario invalido <br>"
     }
-
 }
 
 function validarEscolaridad(cad)
 {
-    if(cad.length==0)
-    {
+    if(cad.length==0) {
         return 'Debes informar la escolaridad <br>';
-    }
+    }else
     return '';
 }
 
@@ -59,7 +55,6 @@ function validarEspecialidad(cad)
     {
         return '';
     }
-
 }
 
 function validarCedula(cad)
@@ -101,12 +96,13 @@ class Docente{
 
   toString() //Aquí se crea el método ToString
   {
-    return "NoDocente: " + this.noDocente + ", NoUsuario: " + this.noUsuario + ", Escolaridad: " + this.escolaridad + ", Especialidad: " + this.especialidad + ", Cedula: " + this.cedula + ", IdCarrera: " + this.idCarrera;
+    return "NoDocente: " + this.noDocente + ", NoUsuario: " + this.noUsuario + ", Escolaridad: " 
+    + this.escolaridad + ", Especialidad: " + this.especialidad + ", Cedula: " + this.cedula
+     + ", IdCarrera: " + this.idCarrera;
   }
 
   guardar()
   {
-      //Almacenará el objeto en la BD
       arrayDocentes.push(this)
   }
 
