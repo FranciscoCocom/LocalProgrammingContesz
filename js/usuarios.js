@@ -6,7 +6,7 @@ function validar(form)
         cad+=validarTelefono(form.telefono.value);
         cad+=validarEmail(form.email.value);
         cad+=validarEstatus(form.estatus.value);
-        cad+=validarTipoUsuario(parseInt(form.tipousuario.options[form.tipousuario.options.selectedIndex].value));
+        cad+=validarTipoUsuario(form.tipousuario.value);
         cad+=validarPasssword(form.password.value,form.pwdrepite.value);
         var accion = form.accion.value;
         if(cad!=''){
@@ -122,6 +122,7 @@ function validarPasssword(pwd1,pwd2){
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////---Aquí se crea el objeto---////////////////////////////////////////////
+/*
 var arrayUsuarios=[];
 class Usuario{
   constructor(id,nombreCompleto,sexo,telefono,email,estatus,tipoUsuario,password,pwdrepite) //Aquí van los parametros de entrada,(las variables necesarias para construir la clase)
@@ -182,7 +183,7 @@ class Usuario{
       }
       return null;
   }
-}
+}*/
 
 function mostrarDiv(){
     document.getElementById("modalEliminacion").style.display="block";
