@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/LocalProgrammingContesz.iml" filepath="$PROJECT_DIR$/.idea/LocalProgrammingContesz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../.idea/LocalProgrammingContesz.iml" filepath="$PROJECT_DIR$/../.idea/LocalProgrammingContesz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../TitulaTEC20207A/.idea/TitulaTEC20207A.iml" filepath="$PROJECT_DIR$/../../TitulaTEC20207A/.idea/TitulaTEC20207A.iml" />
     </modules>
   </component>
 </project>
