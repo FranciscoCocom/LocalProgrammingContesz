@@ -6,9 +6,6 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
-
-
-
 class Categorias(db.Model):
     __tablename__ = 'Categorias'
     idcategoria=Column(Integer, primary_key=True)
@@ -33,7 +30,7 @@ class Categorias(db.Model):
 
 class Carreras(db.Model):
     __tablename__='Carreras'
-    idcarrea=Column(Integer,primary_key=True)
+    idcarrera=Column(Integer,primary_key=True)
     nombre=Column(String,unique=True)
     siglas=Column(String,unique=True)
 
@@ -54,7 +51,7 @@ class Carreras(db.Model):
         return self.query.all()
 
     def consultaIndividual(self):
-        return self.query.get(self.idcarrea)
+        return self.query.get(self.idcarrera)
     alumnos=relationship('Alumno', backref='carrera', lazy='dynamic')
     docentes=relationship('Docente', backref='carrera', lazy='dynamic')
 
@@ -146,7 +143,7 @@ class Usuarios(UserMixin,db.Model):
     docentes = relationship('Docente', backref='usuario', lazy='dynamic')
 
 class Alumnos(db.Model):
-    __tablename__ = 'Carreras'
+    __tablename__ = 'Alumnos'
     nocontrol = Column(Integer, primary_key=True)
     nousuario = Column(Integer, ForeignKey(Usuarios.nousuario), unique=True)
     semestre = Column(Integer)
@@ -181,7 +178,7 @@ class Docentes(db.Model):
     escolaridad = Column(String)
     especialidad= Column(String)
     cedula=Column(Integer,unique=True)
-    idcarrera=Column(Integer,ForeignKey(Carreras.idcarrea))
+    idcarrera=Column(Integer,ForeignKey(Carreras.idcarrera))
 
     def insertar(self):
         db.session.add(self)
