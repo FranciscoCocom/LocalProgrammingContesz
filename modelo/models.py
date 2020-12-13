@@ -142,7 +142,7 @@ class Usuarios(UserMixin,db.Model):
     alumnos = relationship('Alumno', backref='usuario', lazy='dynamic')
     docentes = relationship('Docente', backref='usuario', lazy='dynamic')
 
-class Alumnos():
+class Alumnos(db.Model):
     __tablename__ = 'Carreras'
     nocontrol = Column(Integer, primary_key=True)
     nousuario = Column(Integer, ForeignKey(Usuarios.nousuario), unique=True)
@@ -171,7 +171,7 @@ class Alumnos():
 
     pass
 
-class Docentes():
+class Docentes(db.Model):
     __tablename__ = 'Docentes'
     nodocente = Column(Integer, primary_key=True)
     nousuario = Column(String, ForeignKey(Usuarios.nousuario), unique=True)
@@ -202,7 +202,7 @@ class Docentes():
 
     pass
 
-class Edicion_Eventos():
+class Edicion_Eventos(db.Model):
     __tablename__ = 'Edicion_Eventos'
     idevento = Column(Integer, primary_key=True)
     nombre = Column(String, unique=True)
@@ -234,7 +234,7 @@ class Edicion_Eventos():
 
     pass
 
-class Equipos():
+class Equipos(db.Model):
     __tablename__ = 'Equipos'
     idequipo = Column(Integer, primary_key=True)
     nombre = Column(String, unique=True)
@@ -268,7 +268,7 @@ class Equipos():
     problemas_resueltos=relationship('problema_resuelto',backref='equipo',lazy='dynamic')
     pass
 
-class Problemas():
+class Problemas(db.Model):
     __tablename__ = 'Problemas'
     idproblema = Column(Integer, primary_key=True)
     nombreproblema = Column(String, unique=True)
@@ -298,7 +298,7 @@ class Problemas():
 
     pass
 
-class Problemas_Propuestos():
+class Problemas_Propuestos(db.Model):
     __tablename__ = 'Problemas_Propuestos'
     noproblemas = Column(Integer, ForeignKey(Problemas.idproblema))
     noproblemaspropuestos = Column(Integer, primary_key=True, unique=True)
@@ -327,7 +327,7 @@ class Problemas_Propuestos():
 
     pass
 
-class Problemas_Resueltos():
+class Problemas_Resueltos(db.Model):
     __tablename__ = 'Problemas_Resueltos'
     problemaresuelto = Column(Integer, primary_key=True, unique=True)
     tiempoejecucion = Column(Integer)
