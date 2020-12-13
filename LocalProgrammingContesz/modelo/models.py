@@ -115,10 +115,17 @@ class Usuarios(UserMixin,db.Model):
             return False
 
     def is_admin(self):
-        if self.tipo=='Administrador':
+        if self.tipousuario == 'Administrador':
             return True
         else:
             return False
+
+    def is_docente(self):
+        if self.tipousuario == 'Docente':
+            return True
+        else:
+            return False
+
     def getTipo(self):
         return self.tipo
 
@@ -134,34 +141,9 @@ class Usuarios(UserMixin,db.Model):
                 return None
         else:
             return None
-        alumnos = relationship('Alumno', backref='usuario', lazy='dynamic')
-        docentes = relationship('Docente', backref='usuario', lazy='dynamic')
 
-
-class Opcion(db.Model):
-
-    __tablename__='Opciones'
-    idOpcion=Column(Integer,primary_key=True)
-    nombre=Column(String,unique=True)
-    descripcion=Column(String)
-
-    def insertar(self):
-        db.session.add(self)
-        db.session.commit()
-
-    def consultaGeneral(self):
-        return self.query.all()
-
-    def actualizar(self):
-        db.session.merge(self)
-        db.session.commit()
-
-    def eliminar(self):
-        db.session.delete(self.consultaIndividual())
-        db.session.commit()
-
-    def consultaIndividual(self):
-        return self.query.get(self.idOpcion)
+    alumnos = relationship('Alumno', backref='usuario', lazy='dynamic')
+    docentes = relationship('Docente', backref='usuario', lazy='dynamic')
 
 class Alumnos():
     __tablename__ = 'Carreras'
@@ -221,9 +203,6 @@ class Docentes():
         return self.query.get(self.nodocente)
     equipos=relationship('equipo', backref='docente', lazy='dynamic')
 
-    pass
-
-class Administrativos():
     pass
 
 class Edicion_Eventos():
