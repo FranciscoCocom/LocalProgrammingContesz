@@ -8,7 +8,7 @@ db = SQLAlchemy()
 
 
 
-"""
+
 class Categorias(db.Model):
     __tablename__ = 'Categorias'
     idcategoria=Column(Integer, primary_key=True)
@@ -358,4 +358,3 @@ class Problemas_Resueltos():
         return self.query.get(self.problemaresuelto)
 
     pass
-"""
