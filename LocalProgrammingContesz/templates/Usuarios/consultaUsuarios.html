@@ -3,14 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <!--<link rel="stylesheet" href="../css/bootstrap.min.css">-->
-    <link rel="stylesheet" href="/LocalProgrammingContesz/static/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" href="../css/estilo.css">-->
-    <link rel="stylesheet" href="/LocalProgrammingContesz/static/css/estilo.css">
-    <!--<script src="../js/usuarios.js"></script>-->
-    <script src="/LocalProgrammingContesz/static/js/usuarios.js"></script>
-    <!--<script src="../js/usuariosGUI.js"></script>-->
-    <script src="/LocalProgrammingContesz/static/js/usuariosGUI.js"></script>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/estilo.css')}}">
+      <script src="{{url_for('static',filename='js/usuarios.js')}}"></script>
+      <script src="{{url_for('static',filename='js/usuariosGUI.js')}}"></script>
     <title>LISTA DE USUARIOS</title>
   </head>
   <body>
