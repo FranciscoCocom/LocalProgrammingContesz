@@ -2,8 +2,7 @@ from flask import Flask, render_template, request, abort, redirect, url_for
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
 
 from modelo.models import db
-from modelo.models import Categorias, Usuarios, Edicion_Eventos, Alumnos
-#Equipos, Problemas, Problemas_Propuestos, Problemas_Resueltos, Carreras,  Docentes,
+from modelo.models import Categorias, Usuarios, Edicion_Eventos, Alumnos, Equipos, Problemas, Problemas_Propuestos, Problemas_Resueltos, Carreras, Docentes
 import json
 from flask_sqlalchemy import SQLAlchemy
 
@@ -83,26 +82,26 @@ def regsitrarProducto():
     return 'registrando un producto'
 
 
-@app.route('/consultaDocentes')
+@app.route('/Docentes/consultaDocentes.html')
 @login_required
 def eliminarDocente(nodocente):
     return 'Eliminando al Docente:' + str(nodocente)
 
 
-@app.route('/consultaDocentes/<id>')
+@app.route('/Docentes/consultaDocentes.html/<id>')
 @login_required
 def consultaDocente(id):
     return 'consultando los datos del docente:' + id
 
 
 # Inicio del CRUD de alumnos
-@app.route('/alumnos/new')
+@app.route('/Alumnos/consultaAlumnos.html/new')
 @login_required
 def nuevoAlumno():
-    return render_template('Alumnos/altaAlumno.html')
+    return render_template('Alumnos/consultaAlumnos.html')
 
 
-@app.route('/consultaAlumnos', methods=['POST'])
+@app.route('/Alumnos/consultaAlumnos.html', methods=['POST'])
 @login_required
 def guardar_alumno():
     try:
@@ -112,19 +111,19 @@ def guardar_alumno():
         return name
 
 
-@app.route('/consultaAlumnos')
+@app.route('/Alumnos/consultaAlumnos.html')
 @login_required
 def editarAlumno():
-    return render_template('Alumnos/consultaAlumnos.html')
+    return render_template('/Alumnos/consultaAlumnos.html')
 
 
-@app.route('/consultaAlumnos')
+@app.route('/consultaAlumnos.html')
 @login_required
 def eliminarAlumno():
     return render_template('Alumnos/consultaAlumnos.html')
 
 
-@app.route('/consultaAlumnos')
+@app.route('/consultaAlumnos.html')
 def consultarAlumnos():
     return render_template('Alumnos/consultaAlumnos.html')
 
@@ -132,33 +131,33 @@ def consultarAlumnos():
 # fin del CRUD alumnos
 
 # CRUD Categorias aqui lo dejare igual en las rutas
-@app.route('/categorias/new')
+@app.route('/consultaCategorias.html')
 @login_required
 def nuevaCategoria():
     return render_template('Categorias/consultaCategorias.html')
 
 
-@app.route('/categorias/save', methods=['POST'])
+@app.route('/consultaCategorias.html', methods=['POST'])
 @login_required
-def agregarEdificio():
+def agregarCategoria():
     try:
         c = Categorias()
         c.nombre = request.form['nombre']
         c.insertar()
         # return ''
-        return redirect(url_for('consultarCategorias'))
+        return redirect(url_for('Categorias/consultarCategorias.html'))
     except:
         abort(500)
 
 
-@app.route('/categorias')
+@app.route('/categorias.html')
 def consultarCategorias():
     c=Categorias()
     categorias = c.consultaGeneral()
     return render_template('Categorias/consultaCategorias.html', categorias=categorias)
 
 
-@app.route('/categorias/edit/<int:id>')
+@app.route('/categorias/<int:id>')
 @login_required
 def editarCategoria(id):
     c=Categorias()
@@ -167,50 +166,178 @@ def editarCategoria(id):
     return render_template('Categorias/consultaCategorias.html', categorias=categoria)
 
 
-@app.route('/categorias/modificar', methods=['POST'])
+@app.route('/categorias', methods=['POST'])
 @login_required
 def modificarCategorias():
     c=Categorias()
     c.idcategoria = request.form['id']
     c.nombre = request.form['nombre']
     c.actualizar()
-    return redirect(url_for("consultarCategorias"))
+    return redirect(url_for("Categorias/consultarCategorias.html"))
 
 
-@app.route('/categorias/delete/<int:id>')
+@app.route('/categorias/<int:id>')
 @login_required
 def eliminarCategoria(id):
     c = Categorias()
     c.idcategoria = id
     c.eliminar()
-    return redirect(url_for("consultarCategorias"))
+    return redirect(url_for("Categorias/consultarCategorias.html"))
 # Fin CRUD
 
 # crud de Salas, se cambiara por edicion eventos
-@app.route('/edicion_eventos')
+@app.route('/consultaEdicionEventos.html')
 def consultarEdicion_Eventos():
     ee = Edicion_Eventos()
     edicion_eventos=ee.consultaGeneral()
-    return render_template('Edicion_Eventos/consultaEdicion_Eventos.html', edicion_eventos=edicion_eventos)
+    return render_template('Edicion_Eventos/consultaEdicionEventos.html', edicion_eventos=edicion_eventos)
 
 
-@app.route('/edicion_eventos/new')
+@app.route('/consultaEdicionEventos')
 @login_required
 def nuevaEdicion_Eventos():
     ee = Edicion_Eventos()
-    return render_template('Edicion_Eventos/consultaEdicion_Eventos.html', edicion_eventos=ee.consultaGeneral())
+    return render_template('Edicion_Eventos/consultaEdicionEventos.html', edicion_eventos=ee.consultaGeneral())
 
 
-@app.route('/edicion_eventos/save', methods=['POST'])
+@app.route('/consultaedicionEventos', methods=['POST'])
 @login_required
 def guardarEdicion_Eventos():
     ee = Edicion_Eventos()
     ee.nombre = request.form['nombre']
     ee.idevento = request.form['idEvento']
     ee.insertar()
-    return redirect(url_for('consultaEdicion_Eventos'))
+    return redirect(url_for('Edicion_Eventos/consultaEdicionEventos'))
 
-# fin crud salas
+# fin crud eventos
+
+
+# crud de Carreras
+@app.route('/consultaCarreras.html')
+def consultarCarreras():
+    cr =Carreras()
+    carreras=cr.consultaGeneral()
+    return render_template('Carreras/consultaCarreras.html', carreras=carreras)
+
+
+@app.route('/consultaCarreras')
+@login_required
+def nuevaCarrera():
+    cr = Carreras
+    return render_template('Carreras/consultaCarreras.html', carreras=cr.consultaGeneral())
+
+
+@app.route('/consultaCarreras', methods=['POST'])
+@login_required
+def guardarCarreras():
+    cr = Carreras()
+    cr.nombre = request.form['nombre']
+    cr.idcarrera = request.form['idcarrera']
+    cr.insertar()
+    return redirect(url_for('Carreras/consultaCarreras'))
+# fin crud carreras
+
+
+# crud de Equipos
+@app.route('/consultaEquipos.html')
+def consultarEquipos():
+    e=Equipos()
+    equipos=e.consultaGeneral()
+    return render_template('Equipos/consultaEquipos.html', equipos=equipos)
+
+
+@app.route('/consultaEquipos.html')
+@login_required
+def nuevoEquipo():
+    e=Equipos()
+    return render_template('Equipos/consultaEquipos.html', equipos=e.consultaGeneral())
+
+
+@app.route('/consultaEquipos.html', methods=['POST'])
+@login_required
+def guardarEquipos():
+    e=Equipos()
+    e.idequipo=request.fom['idequipo']
+    e.nombre = request.form['nombre']
+    e.insertar()
+    return redirect(url_for('Equipos/consultaEquipos'))
+# fin crud EQUIPOS
+
+
+# crud de PROBLEMAS
+@app.route('/consultaProblemas.html')
+def consultarProblemas():
+    p=Problemas()
+    problemas=p.consultaGeneral()
+    return render_template('Problemas/consultaProblemas.html', problemas=problemas)
+
+@app.route('/consultaProblemas.html')
+@login_required
+def nuevoProblema():
+    p=Problemas()
+    return render_template('Problemas/consultaProblemas.html', problemas=p.consultaGeneral())
+
+@app.route('/consultaProblemas.html', methods=['POST'])
+@login_required
+def guardarProblemas():
+    p=Problemas()
+    p.idproblema=request.fom['idproblema']
+    p.nombreproblema = request.form['nombre']
+    p.insertar()
+    return redirect(url_for('Problemas/consultaProblemas'))
+# fin crud PROBLEMAS
+
+
+# crud de PROBLEMAS_PROPUESTOS
+@app.route('/consultaProblemasPropuestos.html')
+def consultarProblemasPropuestos():
+    pp=Problemas_Propuestos()
+    problemasprop=pp.consultaGeneral()
+    return render_template('Problemas_Propuestos/consultaProblemasPropuestos.html', problemaspropuestos=problemasprop)
+
+@app.route('/consultaProblemasPropuestos.html')
+@login_required
+def nuevoProblemaPropuesto():
+    pp=Problemas_Propuestos()
+    return render_template('Problemas_Propuestos/consultaProblemasPropuestos.html', problemaspropuestos=pp.consultaGeneral())
+
+@app.route('/consultaProblemasPropuestos.html', methods=['POST'])
+@login_required
+def guardarProblemasPropuestos():
+    pp=Problemas_Propuestos()
+    pp.noproblemaspropuestos =request.fom['idproblema']
+    pp.insertar()
+    return redirect(url_for('Problemas_Propuestos/consultaProblemas.html'))
+# fin crud EQUIPOS
+
+
+# crud de PROBLEMAS_RESUELTOS
+@app.route('/consultaProblemasResueltos.html')
+def consultarProblemasResueltos():
+    pr = Problemas_Resueltos
+    problemasresueltos = pr.consultaGeneral()
+    return render_template('Problemas_Resueltos/consultaProblemasResueltos.html', problemasresueltos=problemasresueltos)
+
+
+@app.route('/consultaProblemasResueltos.html')
+@login_required
+def nuevoProblemaResuelto():
+    pr = Problemas_Resueltos
+    return render_template('Problemas_Resueltos/consultaProblemasResueltos.html',
+                           problemasresueltos=pr.consultaGeneral())
+
+
+@app.route('/consultaProblemasResueltos.html', methods=['POST'])
+@login_required
+def guardarProblemasResueltos():
+    pr = Problemas_Resueltos()
+    pr.problemaresuelto = request.fom['idproblema']
+    pr.insertar()
+    return redirect(url_for('Problemas_Resueltos/consultaProblemasResueltos.html'))
+
+
+# fin crud EQUIPOS
+
 
 # CRUD Opciones (Ajax)
 """
