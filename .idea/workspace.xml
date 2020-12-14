@@ -24,15 +24,18 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/LocalProgrammingContesz/templates" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Andrea\Documents\GitHub\LocalProgrammingContesz\LocalProgrammingContesz\templates" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Andrea\Documents\GitHub\LocalProgrammingContesz" />
       <recent name="C:\Users\Andrea\Documents\GitHub\LocalProgrammingContesz\LocalProgrammingContesz\modelo" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.models">
+  <component name="RunManager" selected="Python.app">
     <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="LocalProgrammingContesz" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -77,8 +80,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.models" />
         <item itemvalue="Python.app" />
+        <item itemvalue="Python.models" />
       </list>
     </recent_temporary>
   </component>
@@ -98,25 +101,33 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="309" y="42" key="#Inspections/0.0.1366.728@0.0.1366.728" timestamp="1607848706803" />
-    <state width="1345" height="182" key="GridCell.Tab.0.bottom" timestamp="1607902479310">
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607906502836">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="182" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1607902479310" />
-    <state width="1345" height="182" key="GridCell.Tab.0.center" timestamp="1607902479309">
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1607906502836" />
+    <state width="1345" height="137" key="GridCell.Tab.0.bottom" timestamp="1607924329642">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="182" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1607902479309" />
-    <state width="1345" height="182" key="GridCell.Tab.0.left" timestamp="1607902479309">
+    <state width="1345" height="137" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1607924329642" />
+    <state width="1345" height="137" key="GridCell.Tab.0.center" timestamp="1607924329641">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="182" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1607902479309" />
-    <state width="1345" height="182" key="GridCell.Tab.0.right" timestamp="1607902479309">
+    <state width="1345" height="137" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1607924329641" />
+    <state width="1345" height="137" key="GridCell.Tab.0.left" timestamp="1607924329641">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1345" height="182" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1607902479309" />
-    <state x="676" y="0" width="697" height="735" maximized="true" key="dock-window-1" timestamp="1607901601719">
+    <state width="1345" height="137" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1607924329641" />
+    <state width="1345" height="137" key="GridCell.Tab.0.right" timestamp="1607924329641">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="676" y="0" width="697" height="735" maximized="true" key="dock-window-1/0.0.1366.728@0.0.1366.728" timestamp="1607901601719" />
+    <state width="1345" height="137" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1607924329641" />
+    <state x="676" y="0" width="697" height="735" key="dock-window-1" timestamp="1607913551288">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="676" y="0" width="697" height="735" key="dock-window-1/0.0.1366.728@0.0.1366.728" timestamp="1607913551288" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1607913209061">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1607913209061" />
   </component>
 </project>

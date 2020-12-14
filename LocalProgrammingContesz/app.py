@@ -10,7 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 app.secret_key = 'ConT3sz'
 #db = SQLAlchemy(app)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://localprogrammingcontesz_user:hola.123@localhost/ConTESZ'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:1234/ConTESZ'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Configuración de la gestion Usuarios con Flask-Login
@@ -32,7 +32,7 @@ def inicio():
     if current_user.is_authenticated:
         return render_template('principal.html')
     else:
-        return render_template('index.html')
+        return render_template('indexPrueba.html')
 
 
 @app.route('/login', methods=['POST'])
@@ -58,7 +58,7 @@ def cerrarSesion():
 
 
 # fin de las rutas del acceso al sistema
-@app.route('Usuarios/consultaUsuarios.html')
+@app.route('/Usuarios/consultaUsuarios.html')
 def registrarUsuario():
     return render_template('Usuarios/consultaUsuarios.html')
 
@@ -106,10 +106,10 @@ def nuevoAlumno():
 @login_required
 def guardar_alumno():
     try:
-        nombre = request.form['nombre']
+        name = request.form['nombre']
     except:
         abort(500)
-    return nombre
+        return name
 
 
 @app.route('/consultaAlumnos')
