@@ -89,7 +89,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -112,22 +112,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1607906502836" />
-    <state width="724" height="137" key="GridCell.Tab.0.bottom" timestamp="1607929765042">
+    <state width="1345" height="137" key="GridCell.Tab.0.bottom" timestamp="1608050549909">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="724" height="137" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1607929765042" />
-    <state width="724" height="137" key="GridCell.Tab.0.center" timestamp="1607929765042">
+    <state width="1345" height="137" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1608050549909" />
+    <state width="1345" height="137" key="GridCell.Tab.0.center" timestamp="1608050549908">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="724" height="137" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1607929765042" />
-    <state width="724" height="137" key="GridCell.Tab.0.left" timestamp="1607929765042">
+    <state width="1345" height="137" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1608050549908" />
+    <state width="1345" height="137" key="GridCell.Tab.0.left" timestamp="1608050549908">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="724" height="137" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1607929765042" />
-    <state width="724" height="137" key="GridCell.Tab.0.right" timestamp="1607929765042">
+    <state width="1345" height="137" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1608050549908" />
+    <state width="1345" height="137" key="GridCell.Tab.0.right" timestamp="1608050549909">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="724" height="137" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1607929765042" />
+    <state width="1345" height="137" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1608050549909" />
     <state x="675" y="-8" width="699" height="744" key="dock-window-1" timestamp="1607927806937">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -136,5 +136,21 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1607913209061" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/modelo/models.py</url>
+          <line>300</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/modelo/models.py</url>
+          <line>57</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
