@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/estilo.css')}}">
-    <script src="{{url_for('static',filename='js/usuarios.js')}}"></script>
+    <!--- <script src="{{url_for('static',filename='js/usuarios.js')}}"></script>---->
     <!---  <script src="{{url_for('static',filename='js/usuariosGUI.js')}}"></script>---->
     <title>LISTA DE USUARIOS</title>
   </head>
@@ -14,7 +14,7 @@
 <header><!-- Aquí empieza el MENU -->
           <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
           <!-- Brand -->
-          <a class="navbar-brand" href="/">Local Programming Contesz</a>
+          <a class="navbar-brand" href="/principal">Local Programming Contesz</a>
 
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
@@ -83,7 +83,9 @@
     <section>
         <div id="listadoGeneral"class="container">
             <h1>LISTA DE USUARIOS</h1>
+            {% if current_user.is_authenticated and current_user.is_admin() %}
             <button onclick="nuevo()" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModalAltaUsuario">Registrar Usuario</button>
+            {% endif %}
             <table class="table table-bordered" id="datos">
                 <th>No. Usuario</th>
                 <th>Nombre completo</th>
@@ -135,11 +137,11 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form action="{{url_for('insert')}}" method="POST"><!-- En esta parte llamas al metodo que realiza las validaciones -->
-                  <div class="form-group">
+        <form action="{{url_for('insertUsuarios')}}" method="POST"><!-- En esta parte llamas al metodo que realiza las validaciones -->
+                 <!-- <div class="form-group">
                     <label>No. Usuario:</label>
                     <input id="nousuario" class="form-control" type="number" value="1" name="nousuario" >
-                  </div>
+                  </div>-->
 
                   <div class="form-group">
                     <label>Nombre completo:</label>
@@ -148,19 +150,19 @@
 
                   <div class="form-group form-check">
                     <label class="">Sexo:</label><br>
-                      <input id="nombre" class="form-control" type="text" name="sexo"  placeholder="sexo" maxlength="50">
-                    <!--<input id="sexo" class="form-check-input" type="radio" name="sexo" value="F"> Femenino <br>-->
-                    <!--<input id="sexo" class="form-check-input" type="radio" name="sexo" value="M"> Masculino-->
+                     <!-- <input id="sexo" class="form-control" type="text" name="sexo"  placeholder="sexo" maxlength="50">-->
+                    <input id="sexo" class="form-check-input" type="radio" name="sexo" value="F"> Femenino <br>
+                    <input id="sexo" class="form-check-input" type="radio" name="sexo" value="M"> Masculino
                   </div>
 
                   <div class="form-group">
                     <label>Telefono:</label>
-                    <input id="telefono" class="form-control" type="tel" name="telefono" placeholder="###-###-####" maxlength="12" >
+                    <input id="telefono" class="form-control" type="text" name="telefono" placeholder="###-###-####" maxlength="20" >
                   </div>
 
                   <div class="form-group">
                     <label>Email:</label>
-                    <input id="email" class="form-control" type="email" name="email" placeholder="ejemplo@ejemplo" maxlength="100" >
+                    <input id="correo" class="form-control" type="text" name="correo" placeholder="ejemplo@ejemplo" maxlength="100" >
                   </div>
 
                   <div class="form-group">
@@ -170,15 +172,12 @@
 
                   <div class="form-group">
                     <label>Tipo de Usuario</label>
-                    <select name="tipousuario" class="form-control">
-                        <option id="tipousuario">Docente</option>
-                        <option id="tipousuario">Alumno</option>
-                    </select>
+                      <input id="tipousuario" class="form-control" type="text" name="tipousuario" placeholder="tipousuario" maxlength="100">
                   </div>
 
                   <div class="form-group">
                     <label>Contraseña:</label>
-                    <input id="password" class="form-control" type="password" name="password" placeholder="password" maxlength="20">
+                    <input id="contraseña" class="form-control" type="password" name="contraseña" placeholder="password" maxlength="20">
                   </div>
 
                   <div class="form-group">
@@ -189,7 +188,7 @@
                   <div style="color:red" id="notificacionescrear">
 
                   </div>
-                  <button type="submit" class="btn btn-success" name="accion" value="crear">Guardar</button>
+                  <button type="submit" class="btn btn-success" name="accion">Guardar</button>
 
 
             </form>
