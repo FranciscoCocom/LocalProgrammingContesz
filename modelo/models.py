@@ -52,8 +52,8 @@ class Carreras(db.Model):
 
     def consultaIndividual(self):
         return self.query.get(self.idcarrera)
-    alumnos=relationship('Alumno', backref='carrera', lazy='dynamic')
-    docentes=relationship('Docente', backref='carrera', lazy='dynamic')
+    alumnos=relationship('Alumnos', backref='carrera', lazy='dynamic')
+    docentes=relationship('Docentes', backref='carrera', lazy='dynamic')
 
 class Usuarios(UserMixin,db.Model):
     __tablename__='Usuarios'
