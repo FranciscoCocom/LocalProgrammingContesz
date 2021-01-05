@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/estilo.css')}}">
-    <!--- <script src="{{url_for('static',filename='js/usuarios.js')}}"></script>---->
-    <!---  <script src="{{url_for('static',filename='js/usuariosGUI.js')}}"></script>---->
+    <script src="{{url_for('static',filename='js/usuarios.js')}}"></script>
+     <script src="{{url_for('static',filename='js/usuariosGUI.js')}}"></script>
     <title>LISTA DE USUARIOS</title>
   </head>
   <body>
@@ -67,10 +67,11 @@
                             <a class="dropdown-item" href="../Problemas_Resueltos/consultaProblemasResueltos.html">Problemas Resueltos</a>
                           </div>
                       </li>
-
+                        {% if current_user.is_authenticated %}
                       <li class="nav-item">
-                        <a data-toggle="modal" data-target="#myModalIniciarSesion" class="nav-link btn btn-secondary" href="#">INICIAR SESIÓN</a>
+                        <a  class="nav-link btn btn-secondary" href="/logout">CERRAR SESIÓN</a>
                       </li>
+                        {% endif %}
                 </ul>
           </nav>
 </header><!-- Aquí Termina el MENU -->
@@ -96,17 +97,22 @@
                 <th>Tipo de Usuario</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
+                {% for row in usuarios %}
                 <tr>
-                    <td>14010911</td>
-                    <td>Maria Torres Lemus</td>
-                    <td>F</td>
-                    <td>351-178-6718</td>
-                    <td>mtorres@gmail.com</td>
-                    <td>Activo</td>
-                    <td>Alumno</td>
+                    <td>{{row.id}}</td>
+                    <td>{{row.nombre}}</td>
+                    <td>{{row.sexo}}</td>
+                    <td>{{row.telefono}}</td>
+                    <td>{{row.correo}}</td>
+                    <td>{{row.estatus}}</td>
+                    <td>{{row.tipousuario}}</td>
+                    {% if current_user.is_authenticated and current_user.is_admin() %}
                     <td><a onclick="editar()" data-toggle="modal" data-target="#myModalEditarUsuario" class="btn btn-warning btn-sm">Editar</a></td>
                     <td><a onclick="mostrarDiv()"class="btn btn-danger btn-sm">Eliminar</a></td>
+                    {% endif %}
+
                 </tr>
+                {% endfor %}
             </table>
           </div>
     </section>

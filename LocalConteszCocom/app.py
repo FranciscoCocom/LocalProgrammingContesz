@@ -17,17 +17,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 
 db = SQLAlchemy(app)
 
-class Data(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(100))
-    email = db.Column(db.String(100))
-    phone = db.Column(db.String(100))
-
-
-    def __init__(self, name, email, phone):
-        self.name = name
-        self.email = email
-        self.phone = phone
+#Apartir de aquí van las tablas de las bases de datos
 
 class Usuarios(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -71,7 +61,7 @@ class Usuarios(UserMixin, db.Model):
         user=Usuarios.query.filter_by(correo=correo,contraseña=contraseña).first()
         return user
 
-
+#Apartir de aquí van las funciones y rutas de la aplicación
 #rutas para el ingreso a la aplicacion
 
 @login_manager.user_loader
@@ -96,23 +86,16 @@ def login():
     else:
         return 'Usuario invalido'
 
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return render_template('index.html')
+
 @app.route('/principal')
 def principal():
     return render_template("principal.html")
 
-@app.route('/insert', methods = ['POST'])
-def insert():
-
-    if request.method == 'POST':
-        name = request.form['name']
-        email = request.form['email']
-        phone = request.form['phone']
-
-        my_data = Data(name, email, phone)
-        db.session.add(my_data)
-        db.session.commit()
-
-        return render_template("principal.html")
 
 @app.route('/insertUsuarios', methods = ['POST'])
 def insertUsuarios():
@@ -130,11 +113,12 @@ def insertUsuarios():
         db.session.add(my_usuario)
         db.session.commit()
 
-        return render_template("principal.html")
+        return redirect(url_for('consultarUsuarios'))
+        #return render_template("Usuarios/consultaUsuarios.html")
 
-@app.route('/hola')
-def consultarData():
-    return render_template("prueba.html")
+
+
+
 
 @app.route('/docentes')
 def consultarDocentes():
@@ -142,7 +126,8 @@ def consultarDocentes():
 
 @app.route('/usuarios')
 def consultarUsuarios():
-    return render_template("Usuarios/consultaUsuarios.html")
+    all_usuarios = Usuarios.query.all()
+    return render_template("Usuarios/consultaUsuarios.html", usuarios = all_usuarios)
 
 if __name__ == "__main__":
     app.run(debug=True)
