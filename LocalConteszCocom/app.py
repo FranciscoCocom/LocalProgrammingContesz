@@ -114,21 +114,48 @@ def insertUsuarios():
         db.session.commit()
 
         return redirect(url_for('consultarUsuarios'))
-        #return render_template("Usuarios/consultaUsuarios.html")
+
+
+#Rutas para editar las tablas
+#Rutas para editar las tablas
+@app.route('/actualizarUsuarios', methods = ['GET','POST'])
+def actualizarUsuarios():
+    if request.method == 'POST':
+        my_usuario = Usuarios.query.get(request.form.get('id'))
+
+        my_usuario.nombre = request.form['nombre']
+        my_usuario.sexo = request.form['sexo']
+        my_usuario.telefono = request.form['telefono']
+        my_usuario.correo = request.form['correo']
+        my_usuario.estatus = request.form['estatus']
+        my_usuario.tipousuario = request.form['tipousuario']
+        my_usuario.contraseña = request.form['contraseña']
+
+        db.session.commit()
+        return redirect(url_for('consultarUsuarios'))
+
+#Rutas para editar las tablas
+#Rutas para editar las tablas
 
 
 
 
+
+#Rutas para consultar las tablas
+#Rutas para consultar las tablas
 
 @app.route('/docentes')
 def consultarDocentes():
     all_docentes = Docentes.query.all()
     return render_template("Docentes/consultaDocentes.html")
 
+
 @app.route('/usuarios')
 def consultarUsuarios():
     all_usuarios = Usuarios.query.all()
     return render_template("Usuarios/consultaUsuarios.html", usuarios = all_usuarios)
+#Rutas para consultar las tablas
+#Rutas para consultar las tablas
 
 
 @app.route('/alumnos')
