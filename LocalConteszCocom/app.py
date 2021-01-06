@@ -122,12 +122,54 @@ def insertUsuarios():
 
 @app.route('/docentes')
 def consultarDocentes():
+    all_docentes = Docentes.query.all()
     return render_template("Docentes/consultaDocentes.html")
 
 @app.route('/usuarios')
 def consultarUsuarios():
     all_usuarios = Usuarios.query.all()
     return render_template("Usuarios/consultaUsuarios.html", usuarios = all_usuarios)
+
+
+@app.route('/alumnos')
+def consultarAlumnos():
+    all_alumnos = Alumnos.query.all()
+    return render_template("Alumnos/consultaAlumnos.html")
+
+@app.route('/carreras')
+def consultarCarreras():
+    all_carreras = Carreras.query.all()
+    return render_template("Carreras/consultaCarreras.html")
+
+@app.route('/categorias')
+def consultarCategorias():
+    all_categorias = Categorias.query.all()
+    return render_template("Categorias/consultaCategorias.html")
+
+@app.route('/edicioneventos')
+def consultarEdicion_Eventos():
+    all_edicioneventos = EdicionEventos.query.all()
+    return render_template("Edicion_Eventos/consultaEdicionEventos.html")
+
+@app.route('/equipos')
+def consultarEquipos():
+    all_equipos = Equipos.query.all()
+    return render_template("Equipos/consultaEquipos.html")
+
+@app.route('/problemas')
+def consultarProblemas():
+    all_problemas = Problemas.query.all()
+    return render_template("Problemas/consultaProblemas.html")
+
+@app.route('/problemaspropuestos')
+def consultarProblemasPropuestos():
+    all_problemaspropuestos = ProblemasPropuestos.query.all()
+    return render_template("ProblemasPropuestos/consultaProblemasPropuestos.html")
+
+@app.route('/problemasresueltos')
+def consultarProblemasResueltos():
+    all_problemasresueltos = ProblemasResueltos.query.all()
+    return render_template("ProblemasResueltos/consultaProblemasResueltos.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
