@@ -147,7 +147,7 @@ def actualizarUsuarios():
 @app.route('/docentes')
 def consultarDocentes():
     all_docentes = Docentes.query.all()
-    return render_template("Docentes/consultaDocentes.html")
+    return render_template("Docentes/consultaDocentes.html", docentes=all_docentes)
 
 
 @app.route('/usuarios')
@@ -161,42 +161,42 @@ def consultarUsuarios():
 @app.route('/alumnos')
 def consultarAlumnos():
     all_alumnos = Alumnos.query.all()
-    return render_template("Alumnos/consultaAlumnos.html")
+    return render_template("Alumnos/consultaAlumnos.html", alumnos=all_alumnos)
 
 @app.route('/carreras')
 def consultarCarreras():
     all_carreras = Carreras.query.all()
-    return render_template("Carreras/consultaCarreras.html")
+    return render_template("Carreras/consultaCarreras.html", carreras=all_carreras)
 
 @app.route('/categorias')
 def consultarCategorias():
     all_categorias = Categorias.query.all()
-    return render_template("Categorias/consultaCategorias.html")
+    return render_template("Categorias/consultaCategorias.html", categorias=all_categorias)
 
 @app.route('/edicioneventos')
 def consultarEdicion_Eventos():
     all_edicioneventos = EdicionEventos.query.all()
-    return render_template("Edicion_Eventos/consultaEdicionEventos.html")
+    return render_template("Edicion_Eventos/consultaEdicionEventos.html", edicioneventos=all_edicioneventos)
 
 @app.route('/equipos')
 def consultarEquipos():
     all_equipos = Equipos.query.all()
-    return render_template("Equipos/consultaEquipos.html")
+    return render_template("Equipos/consultaEquipos.html",equipos=all_equipos)
 
 @app.route('/problemas')
 def consultarProblemas():
     all_problemas = Problemas.query.all()
-    return render_template("Problemas/consultaProblemas.html")
+    return render_template("Problemas/consultaProblemas.html", problemas=all_problemas)
 
 @app.route('/problemaspropuestos')
 def consultarProblemasPropuestos():
     all_problemaspropuestos = ProblemasPropuestos.query.all()
-    return render_template("ProblemasPropuestos/consultaProblemasPropuestos.html")
+    return render_template("ProblemasPropuestos/consultaProblemasPropuestos.html", problemaspropuestos=all_problemaspropuestos)
 
 @app.route('/problemasresueltos')
 def consultarProblemasResueltos():
     all_problemasresueltos = ProblemasResueltos.query.all()
-    return render_template("ProblemasResueltos/consultaProblemasResueltos.html")
+    return render_template("ProblemasResueltos/consultaProblemasResueltos.html",problemasresueltos=all_problemasresueltos)
 
 if __name__ == "__main__":
     app.run(debug=True)
