@@ -149,9 +149,81 @@ def insertDocentes():
         db.session.commit()
 
         return redirect(url_for('consultarDocentes'))
+#-------------------------------------------------------------------------------------------------------------------
+
+#ALUMNOS//////////////////////////////////////////////////////////////////////////////////////////
+class Alumnos (db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    nousuario = db.Column(db.Integer, foreing_key =True)
+    semestre = db.Column(db.Integer)
+    idcarrera = db.Column(db.Integer, foreing_key =True)
+
+    def __init__(self, nousuario,semestre,idcarrera):
+        self.nousuario = nousuario
+        self.semestre = semestre
+        self.idcarrera = idcarrera
 
 
+@app.route('/insertAlumnos', methods = ['POST'])
+def insertAlumnos():
 
+    if request.method == 'POST':
+        nousuario = request.form['noUsuario']
+        semestre = request.form['semestre']
+        idcarrera = request.form['idCarrera']
+
+        my_alumno = Alumnos(nousuario,semestre, idcarrera)
+        db.session.add(my_alumno)
+        db.session.commit()
+
+        return redirect(url_for('consultarAlumnos'))
+#-------------------------------------------------------------------------------------------------------------------
+
+#CATEGORIAS//////////////////////////////////////////////////////////
+class Categorias (db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    nousuario = db.Column(db.Integer, foreing_key =True)
+    semestre = db.Column(db.Integer)
+    idcarrera = db.Column(db.Integer, foreing_key =True)
+
+    def __init__(self, nousuario,semestre,idcarrera):
+        self.nousuario = nousuario
+        self.semestre = semestre
+        self.idcarrera = idcarrera
+
+
+@app.route('/insertCategorias', methods = ['POST'])
+def insertCategorias():
+
+    if request.method == 'POST':
+        nousuario = request.form['noUsuario']
+        semestre = request.form['semestre']
+        idcarrera = request.form['idCarrera']
+
+        my_categoria = Categorias(nousuario,semestre, idcarrera)
+        db.session.add(my_categoria)
+        db.session.commit()
+
+        return redirect(url_for('consultarCategorias'))
+#--------------------------------------------------------------------------
+
+#CARRERAS/////////////////////////////////////
+#----------------------------------------------------------
+
+#EDICION_EVENTOS///////////////////////////
+#-----------------------------------------------------------------
+
+#EQUIPOS////////////////////////////////////////////////////////////////////////
+#---------------------------------------------------------------------------------
+
+#PROBLEMAS////////////////////////////////////////////////////////////////77
+#-----------------------------------------------------------------------
+
+#PROBLEMAS_PROPUESTOS//////////////////////////////////////////////
+#------------------------------------------------------------------------
+
+#PROBLEMAS RESUELTOS//////////////////////////////////////////////////////////
+#----------------------------------------------------------------
 @app.route('/docentes')
 def consultarDocentes():
     all_docentes = Docentes.query.all()
