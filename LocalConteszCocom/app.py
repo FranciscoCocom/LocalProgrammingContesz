@@ -116,7 +116,39 @@ def insertUsuarios():
         return redirect(url_for('consultarUsuarios'))
         #return render_template("Usuarios/consultaUsuarios.html")
 
+#DEMAS TABLAS
+#DOCENTES------------------------------------------------------------------------------
+class Docentes (db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    nousuario = db.Column(db.Integer, foreing_key =True)
+    escolaridad = db.Column(db.String(50))
+    especialidad = db.Column(db.String(50))
+    cedula = db.Column(db.Integer)
+    idcarrera = db.Column(db.Integer, foreing_key =True)
 
+    def __init__(self, nousuario,escolaridad,especialidad,cedula,idcarrera):
+        self.nousuario = nousuario
+        self.escolaridad = escolaridad
+        self.especialidad = especialidad
+        self.cedula = cedula
+        self.idcarrera = idcarrera
+
+
+@app.route('/insertDocentes', methods = ['POST'])
+def insertDocentes():
+
+    if request.method == 'POST':
+        nousuario = request.form['noUsuario']
+        escolaridad = request.form['escolaridad']
+        especialidad = request.form['especialidad']
+        cedula = request.form['cedula']
+        idcarrera = request.form['idCarrera']
+
+        my_docente = Docentes(nousuario, escolaridad, especialidad, cedula,idcarrera)
+        db.session.add(my_docente)
+        db.session.commit()
+
+        return redirect(url_for('consultarDocentes'))
 
 
 
