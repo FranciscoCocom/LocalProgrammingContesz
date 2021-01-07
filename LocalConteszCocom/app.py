@@ -135,6 +135,14 @@ def actualizarUsuarios():
 
         return redirect(url_for('consultarUsuarios'))
 
+@app.route('/eliminarUsuarios/<id>/', methods = ['GET', 'POST'])
+def eliminarUsuarios(id):
+    my_usuarios = Usuarios.query.get(id)
+    db.session.delete(my_usuarios)
+    db.session.commit()
+
+    return redirect(url_for('consultarUsuarios'))
+
 
 #DEMAS TABLAS
 #DOCENTES------------------------------------------------------------------------------
