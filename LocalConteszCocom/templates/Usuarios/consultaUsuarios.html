@@ -107,12 +107,13 @@
                     <td>{{row.estatus}}</td>
                     <td>{{row.tipousuario}}</td>
                     {% if current_user.is_authenticated and current_user.is_admin() %}
-                    <td><a href="/" onclick="editar()" data-toggle="modal" data-target="#myModalEditarUsuario" class="btn btn-warning btn-sm">Editar</a></td>
+                    <td><a href="/actualizarUsuarios/{{row.id}}" onclick="editar()" data-toggle="modal" data-target="#myModalEditarUsuario{{row.id}}" class="btn btn-warning btn-sm">Editar</a></td>
                     <td><a onclick="mostrarDiv()"class="btn btn-danger btn-sm">Eliminar</a></td>
                     {% endif %}
 
                 </tr>
-                {% endfor %}
+{% endfor %}
+                {% for row in usuarios %}
             </table>
           </div>
     </section>
@@ -214,7 +215,7 @@
 
 
 <!-- Aquí empieza Modal EDITAR ------------------------------------------------------------------------------------>
-<div class="modal" id="myModalEditarUsuario">
+<div class="modal" id="myModalEditarUsuario{{row.id}}">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -226,55 +227,54 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form onsubmit="return validar(this)">
-          <div class="form-group">
+        <form action="{{url_for('actualizarUsuarios')}}" method="POST">
+          <!--<div class="form-group">
             <label>No. Usuario:</label>
             <input id="nousuario" class="form-control" type="number" value="1" name="nousuario" >
-          </div>
+          </div>-->
 
           <div class="form-group">
-            <label>Nombre completo:</label>
-            <input id="nombre" class="form-control" type="text" name="nombre"  placeholder="Nombre Completo" maxlength="50">
-          </div>
+                    <label>Nombre completo:</label>
+                    <input type="hidden" name="id" value="{{row.id}}">
+                    <input id="nombre" class="form-control" type="text" name="nombre"  value="{{row.nombre}}" maxlength="50">
+                  </div>
 
-          <div class="form-group form-check">
-            <label class="">Sexo:</label><br>
-            <input id="sexo" class="form-check-input" type="radio" name="sexo" value="F"> Femenino <br>
-            <input id="sexo" class="form-check-input" type="radio" name="sexo" value="M"> Masculino
-          </div>
+                  <div class="form-group form-check">
+                    <label class="">Sexo:</label><br>
+                     <!-- <input id="sexo" class="form-control" type="text" name="sexo"  placeholder="sexo" maxlength="50">-->
+                    <input id="sexo" class="form-check-input" type="radio" name="sexo" value="{{row.sexo}}"> Femenino <br>
+                    <input id="sexo" class="form-check-input" type="radio" name="sexo" value="{{row.sexo}}"> Masculino
+                  </div>
 
-          <div class="form-group">
-            <label>Telefono:</label>
-            <input id="telefono" class="form-control" type="tel" name="telefono" placeholder="###-###-####" maxlength="12" >
-          </div>
+                  <div class="form-group">
+                    <label>Telefono:</label>
+                    <input id="telefono" class="form-control" type="text" name="telefono" value="{{row.telefono}}" maxlength="20" >
+                  </div>
 
-          <div class="form-group">
-            <label>Email:</label>
-            <input id="email" class="form-control" type="email" name="email" placeholder="ejemplo@ejemplo" maxlength="100" >
-          </div>
+                  <div class="form-group">
+                    <label>Email:</label>
+                    <input id="correo" class="form-control" type="text" name="correo" value="{{row.correo}}" maxlength="100" >
+                  </div>
 
-          <div class="form-group">
-            <label>Estatus</label>
-            <input id="estatus" class="form-control" type="text" name="estatus" placeholder="Estatus" maxlength="100">
-          </div>
+                  <div class="form-group">
+                    <label>Estatus</label>
+                    <input id="estatus" class="form-control" type="text" name="estatus" value="{{row.estatus}}" maxlength="100">
+                  </div>
 
-          <div class="form-group">
-            <label>Tipo de Usuario</label>
-            <select name="tipousuario" class="form-control">
-                <option id="tipousuario">Docente</option>
-                <option id="tipousuario">Alumno</option>
-            </select>
-          </div>
+                  <div class="form-group">
+                    <label>Tipo de Usuario</label>
+                      <input id="tipousuario" class="form-control" type="text" name="tipousuario" value="{{row.tipousuario}}" maxlength="100">
+                  </div>
 
-          <div class="form-group">
-            <label>Contraseña:</label>
-            <input id="password" class="form-control" type="password" name="password" placeholder="password" maxlength="20">
-          </div>
+                  <div class="form-group">
+                    <label>Contraseña:</label>
+                    <input id="contraseña" class="form-control" type="password" name="contraseña" value="{{row.contraseña}}" maxlength="20">
+                  </div>
 
-          <div class="form-group">
-            <label>Repite la Contraseña:</label>
-            <input id="pwdrepite" class="form-control" type="password" name="pwdrepite" placeholder="password" maxlength="20">
-          </div>
+                  <div class="form-group">
+                    <label>Repite la Contraseña:</label>
+                    <input id="pwdrepite" class="form-control" type="password" name="pwdrepite" value="{{row.contraseña}}" maxlength="20">
+                  </div>
 
                 <div style="color:red" id="notificacioneseditar">
 
@@ -287,7 +287,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
       </div>
-
+{% endfor %}
     </div>
   </div>
 </div>

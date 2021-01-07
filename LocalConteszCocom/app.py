@@ -116,6 +116,26 @@ def insertUsuarios():
         return redirect(url_for('consultarUsuarios'))
         #return render_template("Usuarios/consultaUsuarios.html")
 
+
+
+@app.route('/actualizarUsuarios', methods = ['GET', 'POST'])
+def actualizarUsuarios():
+    if request.method == 'POST':
+        my_usuarios = Usuarios.query.get(request.form.get('id'))
+
+        my_usuarios.nombre = request.form['nombre']
+        my_usuarios.sexo = request.form['sexo']
+        my_usuarios.telefono = request.form['telefono']
+        my_usuarios.correo = request.form['correo']
+        my_usuarios.estatus = request.form['estatus']
+        my_usuarios.tipousuario = request.form['tipousuario']
+        my_usuarios.contraseña = request.form['contraseña']
+
+        db.session.commit()
+
+        return redirect(url_for('consultarUsuarios'))
+
+
 #DEMAS TABLAS
 #DOCENTES------------------------------------------------------------------------------
 class Docentes (db.Model):
@@ -229,11 +249,11 @@ def consultarDocentes():
     all_docentes = Docentes.query.all()
     return render_template("Docentes/consultaDocentes.html", docentes=all_docentes)
 
+
 @app.route('/usuarios')
 def consultarUsuarios():
     all_usuarios = Usuarios.query.all()
     return render_template("Usuarios/consultaUsuarios.html", usuarios = all_usuarios)
-
 
 @app.route('/alumnos')
 def consultarAlumnos():
