@@ -460,51 +460,151 @@ def eliminarEquipos(id):
 class Problemas (db.Model):
     id = db.Column(db.Integer, primary_key = True)
     nombreproblema = db.Column(db.String(50))
-    puntos = db.Column(db.String(5))
+    puntos = db.Column(db.Integer)
     tiempomaximo=db.Column(db.Time)
     descripcion=db.Column(db.String(200))
 
     def __init__(self, nombreproblema, puntos,tiempomaximo,descripcion):
-        self.nombre = nombre
-        self.siglas = siglas
+        self.nombreproblema = nombreproblema
+        self.puntos = puntos
+        self.tiempomaximo=tiempomaximo
+        self.descripcion=descripcion
 
 @app.route('/insertProblemas', methods = ['POST'])
 def insertProblemas():
 
     if request.method == 'POST':
-        nombre = request.form['nombre']
-        siglas = request.form['siglas']
+        nombreproblema = request.form['nombreproblema']
+        puntos = request.form['puntos']
+        tiempomaximo = request.form['tiempomaximo']
+        descripcion = request.form['descripcion']
 
-        my_carrera = Carreras(nombre,siglas)
-        db.session.add(my_carrera)
+
+        my_problema = Problemas(nombreproblema,puntos,tiempomaximo,descripcion)
+        db.session.add(my_problema)
         db.session.commit()
 
-        return redirect(url_for('consultarCarreras'))
+        return redirect(url_for('consultarProblemas'))
 
-@app.route('/actualizarCarreras', methods=['GET', 'POST'])
-def actualizarCarreras():
+@app.route('/actualizarProblemas', methods=['GET', 'POST'])
+def actualizarProblemas():
     if request.method == 'POST':
-        my_carrera = Carreras.query.get(request.form.get('id'))
-        my_carrera.nombre = request.form['nombre']
-        my_carrera.siglas = request.form['siglas']
+        my_problema = Problemas.query.get(request.form.get('id'))
+        my_problema.nombreproblema = request.form['nombreproblema']
+        my_problema.puntos = request.form['puntos']
+        my_problema.tiempomaximo = request.form['tiempomaximo']
+        my_problema.descripcion = request.form['descripcion']
 
         db.session.commit()
 
-        return redirect(url_for('consultarCarreras'))
+        return redirect(url_for('consultarProblemas'))
 
-@app.route('/eliminarCarreras/<id>/', methods=['GET', 'POST'])
-def eliminarCarreras(id):
-    my_carrera = Carreras.query.get(id)
-    db.session.delete(my_carrera)
+@app.route('/eliminarProblemas/<id>/', methods=['GET', 'POST'])
+def eliminarProblemas(id):
+    my_problema = Problemas.query.get(id)
+    db.session.delete(my_problema)
     db.session.commit()
 
-    return redirect(url_for('consultarCarreras'))
+    return redirect(url_for('consultarProblemas'))
 #-----------------------------------------------------------------------
 
 #PROBLEMAS_PROPUESTOS//////////////////////////////////////////////
+class ProblemasPropuestos (db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    noproblemas = db.Column(db.Integer,foreing_key=True)
+    noedicion = db.Column(db.Integer,foreing_key=True)
+    color=db.Column(db.String(7))
+
+    def __init__(self, noproblemas, noedicion,color):
+        self.noproblemas = noproblemas
+        self.noedicion = noedicion
+        self.color=color
+
+@app.route('/insertProblemasPropuestos', methods = ['POST'])
+def insertProblemasPropuestos():
+
+    if request.method == 'POST':
+        noproblemas = request.form['noproblemas']
+        noedicion = request.form['noedicion']
+        color = request.form['color']
+
+        my_problemapropuesto = Problemas(noproblemas,noedicion,color)
+        db.session.add(my_problemapropuesto)
+        db.session.commit()
+
+        return redirect(url_for('consultarProblemasPropuestos'))
+
+@app.route('/actualizarProblemasPropuestos', methods=['GET', 'POST'])
+def actualizarProblemasPropuestos():
+    if request.method == 'POST':
+        my_problemapropuesto = ProblemasPropuestos.query.get(request.form.get('id'))
+        my_problemapropuesto.noproblemas = request.form['noproblemas']
+        my_problemapropuesto.noedicion = request.form['noedicion']
+        my_problemapropuesto.color = request.form['color']
+
+        db.session.commit()
+
+        return redirect(url_for('consultarProblemasPropuestos'))
+
+@app.route('/eliminarProblemasPropuestos/<id>/', methods=['GET', 'POST'])
+def eliminarProblemasPropuestos(id):
+    my_problemapropuesto = ProblemasPropuestos.query.get(id)
+    db.session.delete(my_problemapropuesto)
+    db.session.commit()
+
+    return redirect(url_for('consultarProblemasPropuestos'))
 #------------------------------------------------------------------------
 
 #PROBLEMAS RESUELTOS//////////////////////////////////////////////////////////
+class ProblemasResueltos (db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    tiempoejecucion = db.Column(db.Time)
+    noequipo = db.Column(db.Integer,foreign_key=True)
+    puntos=db.Column(db.Integer)
+    noproblemaspropuestos=db.Column(db.Integer,foreign_key=True)
+
+    def __init__(self, tiempoejecucion, noequipo,puntos,noproblemaspropuestos):
+        self.tiempoejecucion = tiempoejecucion
+        self.noequipo=noequipo
+        self.puntos = puntos
+        self.noproblemaspropuestos=noproblemaspropuestos
+
+@app.route('/insertProblemasResueltos', methods = ['POST'])
+def insertProblemasResueltos():
+
+    if request.method == 'POST':
+        tiempoejecucion = request.form['tiempoejecucion']
+        noequipo = request.form['noequipo']
+        puntos = request.form['puntos']
+        noproblemaspropuestos = request.form['noproblemaspropuestos']
+
+
+        my_problemaresuelto = ProblemasResueltos(tiempoejecucion,noequipo,puntos,noproblemaspropuestos)
+        db.session.add(my_problemaresuelto)
+        db.session.commit()
+
+        return redirect(url_for('consultarProblemasResueltos'))
+
+@app.route('/actualizarProblemasResueltos', methods=['GET', 'POST'])
+def actualizarProblemasResueltos():
+    if request.method == 'POST':
+        my_problemaresuelto = ProblemasResueltos.query.get(request.form.get('id'))
+        my_problemaresuelto.teimpoejecucion = request.form['tiempoejecucion']
+        my_problemaresuelto.noequipo = request.form['noequipo']
+        my_problemaresuelto.puntos = request.form['puntos']
+        my_problemaresuelto.problemaspropuestos = request.form['problemaspropuestos']
+
+        db.session.commit()
+
+        return redirect(url_for('consultarProblemasResueltos'))
+
+@app.route('/eliminarProblemasResueltos/<id>/', methods=['GET', 'POST'])
+def eliminarProblemasResueltos(id):
+    my_problemaresuelto = ProblemasResueltos.query.get(id)
+    db.session.delete(my_problemaresuelto)
+    db.session.commit()
+
+    return redirect(url_for('consultarProblemasResueltos'))
 #----------------------------------------------------------------
 @app.route('/docentes')
 def consultarDocentes():
