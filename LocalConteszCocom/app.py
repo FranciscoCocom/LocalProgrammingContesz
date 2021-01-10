@@ -11,7 +11,7 @@ login_manager=LoginManager()
 login_manager.init_app(app)
 login_manager.login_view="inicio"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:contraseña@localhost/localprogrammingcontesz'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:eltolok.1@localhost/localprogrammingcontesz'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 
