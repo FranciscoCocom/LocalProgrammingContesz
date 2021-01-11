@@ -18,6 +18,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 db = SQLAlchemy(app)
 
 #Apartir de aquí van las tablas de las bases de datos
+#-----------------------------------USUARIOS USUARIOS USUARIOS USUARIOS USUARIOS USUARIOS---------------------------
 
 class Usuarios(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key = True)
@@ -144,11 +145,18 @@ def eliminarUsuarios(id):
     return redirect(url_for('consultarUsuarios'))
 
 
-#DEMAS TABLAS
-#DOCENTES------------------------------------------------------------------------------
+@app.route('/usuarios')
+def consultarUsuarios():
+    all_usuarios = Usuarios.query.all()
+    return render_template("Usuarios/consultaUsuarios.html", usuarios = all_usuarios)
+#-----------------------------------USUARIOS USUARIOS USUARIOS USUARIOS USUARIOS USUARIOS---------------------------
+
+
+#-----------------------------------DOCENTES DOCENTES DOCENTES DOCENTES DOCENTES DOCENTES---------------------------
+
 class Docentes (db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    nousuario = db.Column(db.Integer, foreing_key =True)
+    nousuario = db.Column(db.Integer)
     escolaridad = db.Column(db.String(50))
     especialidad = db.Column(db.String(50))
     cedula = db.Column(db.Integer)
@@ -162,34 +170,41 @@ class Docentes (db.Model):
         self.idcarrera = idcarrera
 
 
-@app.route('/insertDocentes', methods = ['POST'])
+@app.route('/insertDocentes', methods=['POST'])
 def insertDocentes():
-
     if request.method == 'POST':
-        nousuario = request.form['noUsuario']
+        nousuario = request.form['nousuario']
         escolaridad = request.form['escolaridad']
         especialidad = request.form['especialidad']
         cedula = request.form['cedula']
-        idcarrera = request.form['idCarrera']
+        idcarrera = request.form['idcarrera']
 
-        my_docente = Docentes(nousuario, escolaridad, especialidad, cedula,idcarrera)
+        my_docente = Docentes(nousuario, escolaridad, especialidad, cedula, idcarrera)
         db.session.add(my_docente)
         db.session.commit()
 
         return redirect(url_for('consultarDocentes'))
 
+@app.route('/docentes')
+def consultarDocentes():
+    all_docentes = Docentes.query.all()
+    return render_template("Docentes/consultaDocentes.html", docentes = all_docentes)
+
 @app.route('/actualizarDocentes', methods=['GET', 'POST'])
 def actualizarDocentes():
     if request.method == 'POST':
         my_docente = Docentes.query.get(request.form.get('id'))
+
+        my_docente.nousuario = request.form['nousuario']
         my_docente.escolaridad = request.form['escolaridad']
         my_docente.especialidad = request.form['especialidad']
         my_docente.cedula = request.form['cedula']
-        my_docente.idcarrera = request.form['idCarrera']
+        my_docente.idcarrera = request.form['idcarrera']
 
         db.session.commit()
 
         return redirect(url_for('consultarDocentes'))
+
 
 @app.route('/eliminarDocentes/<id>/', methods=['GET', 'POST'])
 def eliminarDocentes(id):
@@ -198,9 +213,10 @@ def eliminarDocentes(id):
     db.session.commit()
 
     return redirect(url_for('consultarDocentes'))
-#-------------------------------------------------------------------------------------------------------------------
+#-----------------------------------DOCENTES DOCENTES DOCENTES DOCENTES DOCENTES DOCENTES---------------------------
 
-#ALUMNOS//////////////////////////////////////////////////////////////////////////////////////////
+
+#-----------------------------------ALUMNOS ALUMNOS ALUMNOS ALUMNOS ALUMNOS ALUMNOS---------------------------
 class Alumnos (db.Model):
     id = db.Column(db.Integer, primary_key = True)
     nousuario = db.Column(db.Integer, foreing_key =True)
@@ -216,9 +232,9 @@ class Alumnos (db.Model):
 def insertAlumnos():
 
     if request.method == 'POST':
-        nousuario = request.form['noUsuario']
+        nousuario = request.form['nousuario']
         semestre = request.form['semestre']
-        idcarrera = request.form['idCarrera']
+        idcarrera = request.form['idcarrera']
 
         my_alumno = Alumnos(nousuario,semestre, idcarrera)
         db.session.add(my_alumno)
@@ -226,12 +242,15 @@ def insertAlumnos():
 
         return redirect(url_for('consultarAlumnos'))
 
+
 @app.route('/actualizarAlumnos', methods=['GET', 'POST'])
 def actualizarAlumnos():
     if request.method == 'POST':
         my_alumno = Alumnos.query.get(request.form.get('id'))
+
+        my_alumno.nousuario = request.form['nousuario']
         my_alumno.semestre = request.form['semestre']
-        my_alumno.idcarrera = request.form['idCarrera']
+        my_alumno.idcarrera = request.form['idcarrera']
 
         db.session.commit()
 
@@ -244,7 +263,15 @@ def eliminarAlumnos(id):
     db.session.commit()
 
     return redirect(url_for('consultarAlumnos'))
-#-------------------------------------------------------------------------------------------------------------------
+
+@app.route('/alumnos')
+def consultarAlumnos():
+    all_alumnos = Alumnos.query.all()
+    return render_template("Alumnos/consultaAlumnos.html", alumnos = all_alumnos)
+#-----------------------------------ALUMNOS ALUMNOS ALUMNOS ALUMNOS ALUMNOS ALUMNOS---------------------------
+
+
+'''
 
 #CATEGORIAS//////////////////////////////////////////////////////////
 class Categorias (db.Model):
@@ -665,7 +692,6 @@ def error_404(e):
 @app.errorhandler(500)
 def error_500(e):
     return render_template('comunes/error_500.html'), 500
-
-
+'''
 if __name__ == "__main__":
     app.run(debug=True)

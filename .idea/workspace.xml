@@ -36,8 +36,8 @@
       <recent name="C:\Users\Andrea\Documents\GitHub\LocalProgrammingContesz\LocalProgrammingContesz\templates" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.app (1)">
-    <configuration name="app (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.app">
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="LocalProgrammingContesz" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -45,11 +45,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LocalConteszCocom" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LocalProgrammingContesz" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LocalConteszCocom/app.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LocalProgrammingContesz/app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -65,12 +65,12 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LocalProgrammingContesz" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="SDK_HOME" value="C:\Users\cocom\Documents\GitHub\LocalProgrammingContesz\LocalConteszCocom\venv\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/LocalConteszCocom" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LocalProgrammingContesz/app.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/LocalConteszCocom/app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -101,13 +101,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.app (1)" />
       <item itemvalue="Python.app" />
       <item itemvalue="Python.models" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.app (1)" />
+        <item itemvalue="Python.app" />
         <item itemvalue="Python.app" />
         <item itemvalue="Python.models" />
       </list>
@@ -126,44 +125,6 @@
       <updated>1607820257810</updated>
     </task>
     <servers />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="309" y="42" key="#Inspections" timestamp="1607848706803">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="309" y="42" key="#Inspections/0.0.1366.728@0.0.1366.728" timestamp="1607848706803" />
-    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607906502836">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1607906502836" />
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1609383740354">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1609383740354" />
-    <state width="1345" height="137" key="GridCell.Tab.0.bottom" timestamp="1609381968751">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1345" height="137" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1609381968751" />
-    <state width="1345" height="137" key="GridCell.Tab.0.center" timestamp="1609381968750">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1345" height="137" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1609381968750" />
-    <state width="1345" height="137" key="GridCell.Tab.0.left" timestamp="1609381968750">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1345" height="137" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1609381968750" />
-    <state width="1345" height="137" key="GridCell.Tab.0.right" timestamp="1609381968750">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1345" height="137" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1609381968750" />
-    <state x="675" y="-8" width="699" height="744" key="dock-window-1" timestamp="1607927806937">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="675" y="-8" width="699" height="744" key="dock-window-1/0.0.1366.728@0.0.1366.728" timestamp="1607927806937" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1607913209061">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1607913209061" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

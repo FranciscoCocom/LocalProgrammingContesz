@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/estilo.css')}}">
-      <script src="{{url_for('static',filename='js/docentes.js')}}"></script>
+     <!--- <script src="{{url_for('static',filename='js/docentes.js')}}"></script>-->
     <title>Docentes</title>
   </head>
   <body>
@@ -13,7 +13,7 @@
 <header><!-- Aquí empieza el MENU -->
           <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
           <!-- Brand -->
-          <a class="navbar-brand" href="/">Local Programming Contesz</a>
+          <a class="navbar-brand" href="/principal">Local Programming Contesz</a>
 
           <!-- Links -->
           <ul class="navbar-nav ml-auto">
@@ -24,8 +24,8 @@
                 </a>
 
                 <div class="dropdown-menu">
-                  <a class="dropdown-item" href="../Docentes/consultaDocentes.html">Docentes</a>
-                        <a class="dropdown-item" href="consultaUsuarios.html">Usuarios</a>
+                            <a class="dropdown-item" href="/docentes">Docentes</a>
+                            <a class="dropdown-item" href="/usuarios">Usuarios</a>
                 </div>
             </li>
 
@@ -214,6 +214,7 @@
 
           <div class="form-group">
             <label>No. Usuario:</label><!--AQUI DUDA PARA EL ID-->
+              <input type="hidden" name="id" value="{{row.id}}">
             <input class="form-control" type="number" value="{{row.nousuario}}" name="nousuario" raedonly required>
           </div>
 

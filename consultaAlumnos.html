@@ -4,17 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
-        <link rel="stylesheet" href="{{url_for('static',filename='css/estilo.css')}}">
-   <!--- <script src="{{url_for('static',filename='js/usuarios.js')}}"></script>-->
-     <!---<script src="{{url_for('static',filename='js/usuariosGUI.js')}}"></script>-->
-    <title>LISTA DE USUARIOS</title>
+      <link rel="stylesheet" href="{{url_for('static',filename='css/estilo.css')}}">
+     <!-- <script src="{{url_for('static',filename='js/alumnos.js')}}"></script>-->
+    <title>Alumnos</title>
   </head>
   <body>
 <!--- Esta es la parte del menú ------------------------------------------------------------------------------------>
 <header><!-- Aquí empieza el MENU -->
           <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
           <!-- Brand -->
-          <a class="navbar-brand" href="/principal">Local Programming Contesz</a>
+          <a class="navbar-brand" href="../principal.html">Local Programming Contesz</a>
 
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
@@ -25,8 +24,8 @@
                       </a>
 
                       <div class="dropdown-menu">
-                        <a class="dropdown-item" href="/docentes">Docentes</a>
-                        <a class="dropdown-item" href="/usuarios">Usuarios</a>
+                        <a class="dropdown-item" href="../Docentes/consultaDocentes.html">Docentes</a>
+                        <a class="dropdown-item" href="consultaUsuarios.html">Usuarios</a>
                       </div>
                   </li>
 
@@ -38,8 +37,8 @@
 
                           <div class="dropdown-menu">
                             <a class="dropdown-item" href="../Edicion_Eventos/consultaEdicionEventos.html">Eventos</a>
-                            <a class="dropdown-item" href="../Categorias/consultaCategorias.html">Categorías</a>
-                          </div>
+                                <a class="dropdown-item" href="../Categorias/consultaCategorias.html">Categorías</a>
+                              </div>
                       </li>
 
                       <!-- Dropdown -->
@@ -62,10 +61,10 @@
                           </a>
 
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" href="../Problemas/consultaProblemas.html">Problemas</a>
-                            <a class="dropdown-item" href="../Problemas_Propuestos/consultaProblemasPropuestos.html">Problemas Propuestos</a>
-                            <a class="dropdown-item" href="../Problemas_Resueltos/consultaProblemasResueltos.html">Problemas Resueltos</a>
-                          </div>
+                                <a class="dropdown-item" href="../Problemas/consultaProblemas.html">Problemas</a>
+                                <a class="dropdown-item" href="../Problemas_Propuestos/consultaProblemasPropuestos.html">Problemas Propuestos</a>
+                                <a class="dropdown-item" href="../Problemas_Resueltos/consultaProblemasResueltos.html">Problemas Resueltos</a>
+                              </div>
                       </li>
                         {% if current_user.is_authenticated %}
                       <li class="nav-item">
@@ -77,47 +76,61 @@
 </header><!-- Aquí Termina el MENU -->
 <!--- Esta es la parte del menú ------------------------------------------------------------------------------------>
 
+<!-- Aquí Empieza el Ajax -->
+<script>
+  function ajax(){
+    const http = new XMLHttpRequest();
+    const url = 'http://localhost/Alumnos/consultaAlumnos.html';
+
+    http.onreadystatechange = function(){
+      if(this.readyState == 4 && this.status == 200){
+        console.log(this.responseText);
+      }
+    }
+    http.open("GET", url);
+    http.send();
+  }
+</script>
+<!-- Aquí termina la función Ajax el Ajax -->
+
+
+
 <!--- Esta es la parte de CONSULTA, Aquí es la tabla que enlista los elementos de la tabla-------------------------->
 <!--- Los botones: Registrar, Editar y ELiminar activan cada uno a su modal correspondiente------------------------->
 <!--- A los botones: Registrar, Editar y ELiminar se les tiene que agregar a cada uno un data-target------------------------->
 <main>
     <section>
-        <div id="listadoGeneral"class="container">
-            <h1>LISTA DE USUARIOS</h1>
-            {% if current_user.is_authenticated and current_user.is_admin() %}
-            <button onclick="nuevo()" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModalAltaUsuario">Registrar Usuario</button>
+        <div class="container">
+            <h1>LISTA DE ALUMNOS</h1>
+             {% if current_user.is_authenticated and current_user.is_admin() %}
+            <button onclick="nuevo()" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModalAltaAlumnos">Registrar Alumno</button>
             {% endif %}
             <table class="table table-bordered" id="datos">
+                <th>No. Control</th>
                 <th>No. Usuario</th>
-                <th>Nombre completo</th>
-                <th>Sexo</th>
-                <th>Telefono</th>
-                <th>Email</th>
-                <th>Estatus</th>
-                <th>Tipo de Usuario</th>
+                <th>Semestre</th>
+                <th>Id Carrera</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
-                {% for row in usuarios %}
+                {% for row in alumnos %}
                 <tr>
                     <td>{{row.id}}</td>
-                    <td>{{row.nombre}}</td>
-                    <td>{{row.sexo}}</td>
-                    <td>{{row.telefono}}</td>
-                    <td>{{row.correo}}</td>
-                    <td>{{row.estatus}}</td>
-                    <td>{{row.tipousuario}}</td>
+                    <td>{{row.nousuario}}</td>
+                    <td>{{row.semestre}}</td>
+                    <td>{{row.idcarrera}}</td>
                     {% if current_user.is_authenticated and current_user.is_admin() %}
-                    <td><a href="/actualizarUsuarios/{{row.id}}" onclick="editar()" data-toggle="modal" data-target="#myModalEditarUsuario{{row.id}}" class="btn btn-warning btn-sm">Editar</a></td>
-                    <td><a href="/eliminarUsuarios/{{row.id}}" onclick="mostrarDiv()"class="btn btn-danger btn-sm">Eliminar</a></td>
+                    <td><a href="/actualizarAlumnos/{{row.id}}" onclick="editar()" data-toggle="modal" data-target="#myModalEditarAlumno{{row.id}}" class="btn btn-warning btn-sm">Editar</a></td>
+                    <td><a href="/eliminarAlumnos/{{row.id}}" onclick="mostrarDiv()"class="btn btn-danger btn-sm">Eliminar</a></td>
                     {% endif %}
 
+                    <!--<td><a data-toggle="modal" data-target="#myModalEditarAlumno" class="btn btn-warning btn-sm">Editar</a></td>
+                    <td><a onclick="mostrarDiv()"class="btn btn-danger btn-sm">Eliminar</a></td>-->
                 </tr>
-{% endfor %}
-                {% for row in usuarios %}
+                {% endfor %}
+                {% for row in alumnos %}
             </table>
           </div>
     </section>
-
 </main>
 <!--- Esta es la parte de CONSULTA, Aquí es la tabla que enlista los elementos de la tabla-------------------------->
 
@@ -131,75 +144,47 @@
 </div>
 <!-- Aquí va el div que seré el mensaje de eliminar ------------------------------------------------------------>
 
+
 <!-- Aquí empieza la parte del  Modal AGREGAR --------------------------------------------------------------------->
-<div class="modal" id="myModalAltaUsuario">
+<div class="modal" id="myModalAltaAlumnos">
   <div class="modal-dialog">
     <div class="modal-content">
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">AGREGAR USUARIO</h4>
+        <h4 class="modal-title">AGREGAR ALUMNO</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form action="{{url_for('insertUsuarios')}}" method="POST"><!-- En esta parte llamas al metodo que realiza las validaciones -->
-                 <!-- <div class="form-group">
-                    <label>No. Usuario:</label>
-                    <input id="nousuario" class="form-control" type="number" value="1" name="nousuario" >
+        <form action="{{url_for('insertAlumnos')}}" method="POST"><!-- En esta parte llamas al metodo que realiza las validaciones -->
+       <!-- <form onsubmit="return validar(this)">
+                  <div class="form-group">
+                    <label>No. Control:</label>
+                    <input class="form-control" type="number" name="nocontrol">
                   </div>-->
 
                   <div class="form-group">
-                    <label>Nombre completo:</label>
-                    <input id="nombre" class="form-control" type="text" name="nombre"  placeholder="Nombre Completo" maxlength="50">
-                  </div>
-
-                  <div class="form-group form-check">
-                    <label class="">Sexo:</label><br>
-                     <!-- <input id="sexo" class="form-control" type="text" name="sexo"  placeholder="sexo" maxlength="50">-->
-                    <input id="sexo" class="form-check-input" type="radio" name="sexo" value="F"> Femenino <br>
-                    <input id="sexo" class="form-check-input" type="radio" name="sexo" value="M"> Masculino
+                    <label>No. Usuario:</label>
+                    <input id="nousuario" class="form-control" type="number" name="nousuario" placeholder="No. Usuario">
                   </div>
 
                   <div class="form-group">
-                    <label>Telefono:</label>
-                    <input id="telefono" class="form-control" type="text" name="telefono" placeholder="###-###-####" maxlength="20" >
+                    <label>Semestre:</label>
+                    <input id="semestre" class="form-control" type="number" name="semestre" placeholder="# Semestre">
                   </div>
 
                   <div class="form-group">
-                    <label>Email:</label>
-                    <input id="correo" class="form-control" type="text" name="correo" placeholder="ejemplo@ejemplo" maxlength="100" >
-                  </div>
-
-                  <div class="form-group">
-                    <label>Estatus</label>
-                    <input id="estatus" class="form-control" type="text" name="estatus" placeholder="Estatus" maxlength="100">
-                  </div>
-
-                  <div class="form-group">
-                    <label>Tipo de Usuario</label>
-                      <input id="tipousuario" class="form-control" type="text" name="tipousuario" placeholder="tipousuario" maxlength="100">
-                  </div>
-
-                  <div class="form-group">
-                    <label>Contraseña:</label>
-                    <input id="contraseña" class="form-control" type="password" name="contraseña" placeholder="password" maxlength="20">
-                  </div>
-
-                  <div class="form-group">
-                    <label>Repite la Contraseña:</label>
-                    <input id="pwdrepite" class="form-control" type="password" name="pwdrepite" placeholder="password" maxlength="20">
+                    <label>Id Carrera:</label>
+                    <input id="idcarrera" class="form-control" type="number" name="idcarrera" placeholder="Id Carrera">
                   </div>
 
                   <div style="color:red" id="notificacionescrear">
 
                   </div>
-                  <button type="submit" class="btn btn-success" name="accion">Guardar</button>
-
-
+                  <button onclick="ajax()"type="submit" class="btn btn-success" name="accion" value="crear">Guardar</button>
             </form>
-
       </div>
 
       <!-- Modal footer -->
@@ -212,76 +197,49 @@
 </div>
 <!-- Aquí Termina la parte del  Modal AGREGAR --------------------------------------------------------------------->
 
-
-
 <!-- Aquí empieza Modal EDITAR ------------------------------------------------------------------------------------>
-<div class="modal" id="myModalEditarUsuario{{row.id}}">
+<div class="modal" id="myModalEditarAlumno{{row.id}}">
   <div class="modal-dialog">
     <div class="modal-content">
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">EDITAR USUARIO</h4>
+        <h4 class="modal-title">EDITAR ALUMNO</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form action="{{url_for('actualizarUsuarios')}}" method="POST">
-          <!--<div class="form-group">
-            <label>No. Usuario:</label>
-            <input id="nousuario" class="form-control" type="number" value="1" name="nousuario" >
-          </div>-->
+        <form action="{{url_for('actualizarAlumnos')}}" method="POST">
+       <!-- <form onsubmit="return validar(this)">
+            <div class="form-group">
+                <label>No. Control:</label>
+                <input id="nocontrol" class="form-control" type="number" name="nocontrol">
+              </div>-->
 
-          <div class="form-group">
-                    <label>Nombre completo:</label>
-                    <input type="hidden" name="id" value="{{row.id}}">
-                    <input id="nombre" class="form-control" type="text" name="nombre"  value="{{row.nombre}}" maxlength="50">
-                  </div>
+              <div class="form-group">
+                <label>No. Usuario:</label><!--DUDA AQUI ID-->
+                  <input type="hidden" name="id" value="{{row.id}}">
+                <input id="nousuario" class="form-control" type="number" name="nousuario" value="{{row.nousuario}}" placeholder="No. Usuario">
+              </div>
 
-                  <div class="form-group form-check">
-                    <label class="">Sexo:</label><br>
-                     <!-- <input id="sexo" class="form-control" type="text" name="sexo"  placeholder="sexo" maxlength="50">-->
-                    <input id="sexo" class="form-check-input" type="radio" name="sexo" value="{{row.sexo}}"> Femenino <br>
-                    <input id="sexo" class="form-check-input" type="radio" name="sexo" value="{{row.sexo}}"> Masculino
-                  </div>
+              <div class="form-group">
+                <label>Semestre:</label>
+                <input id="semestre" class="form-control" type="number" name="semestre" value="{{row.semestre}}" placeholder="# Semestre">
+              </div>
 
-                  <div class="form-group">
-                    <label>Telefono:</label>
-                    <input id="telefono" class="form-control" type="text" name="telefono" value="{{row.telefono}}" maxlength="20" >
-                  </div>
+              <div class="form-group">
+                <label>Id Carrera:</label>
+                <input id="idcarrera" class="form-control" type="number" name="idcarrera" value="{{row.idcarrera}}" placeholder="Id Carrera">
+              </div>
 
-                  <div class="form-group">
-                    <label>Email:</label>
-                    <input id="correo" class="form-control" type="text" name="correo" value="{{row.correo}}" maxlength="100" >
-                  </div>
+              <div style="color:red" id="notificacioneseditar">
 
-                  <div class="form-group">
-                    <label>Estatus</label>
-                    <input id="estatus" class="form-control" type="text" name="estatus" value="{{row.estatus}}" maxlength="100">
-                  </div>
+              </div>
+              <button  type="submit" class="btn btn-success" name="accion" value="editar">Guardar</button>
+    </form>
+  </div>
 
-                  <div class="form-group">
-                    <label>Tipo de Usuario</label>
-                      <input id="tipousuario" class="form-control" type="text" name="tipousuario" value="{{row.tipousuario}}" maxlength="100">
-                  </div>
-
-                  <div class="form-group">
-                    <label>Contraseña:</label>
-                    <input id="contraseña" class="form-control" type="password" name="contraseña" value="{{row.contraseña}}" maxlength="20">
-                  </div>
-
-                  <div class="form-group">
-                    <label>Repite la Contraseña:</label>
-                    <input id="pwdrepite" class="form-control" type="password" name="pwdrepite" value="{{row.contraseña}}" maxlength="20">
-                  </div>
-
-                <div style="color:red" id="notificacioneseditar">
-
-                </div>
-                <button  type="submit" class="btn btn-success" name="accion" value="editar">Guardar</button>
-        </form>
-      </div>
 
       <!-- Modal footer -->
       <div class="modal-footer">
@@ -294,20 +252,20 @@
 <!-- Aquí termina Modal EDITAR ------------------------------------------------------------------------------------>
 
 <!-- Aquí empieza Modal ELIMINAR --------------------------------------------------------------------------------------------------->
-<div class="modal" id="myModalEliminarUsuario">
+<div class="modal" id="myModalEliminarAlumno">
   <div class="modal-dialog">
     <div class="modal-content">
 
       <!-- Modal Header -->
       <div class="modal-header">
-        <h4 class="modal-title">ELIMINAR USUARIO</h4>
+        <h4 class="modal-title">ELIMINAR ALUMNO</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
 
       <!-- Modal body -->
       <div class="modal-body">
         <form>
-                <p>¿Estas seguro de eliminar al alumno (a): <b>Maria Torres Lemus</b>?</p>
+                <p>¿Estas seguro de eliminar al (a) alumno (a) con No. de Control:17010331 </p>
 
                   <button class="btn btn-success">Eliminar</button>
         </form>
@@ -322,6 +280,7 @@
   </div>
 </div>
 <!-- Aquí termina Modal ELIMINAR --------------------------------------------------------------------------------------------------->
+
 
 
 <!-- Aquí empieza la parte del  Modal LOGIN --------------------------------------------------------------------->
@@ -363,12 +322,13 @@
 
 
 <!-- Estas lineas son necesarias para que funcione el MODAL-->
-<!--<script src="../js/jquery-3.5.1.min.js"> </script>Estas lineas son necesarias para que funcione el MODAL-->
-<!--<script src="../js/popper.min.js"> </script>Estas lineas son necesarias para que funcione el MODAL-->
+<!--<script src="../js/jquery-3.5.1.min.js"> </script> Estas lineas son necesarias para que funcione el MODAL-->
+<!--<script src="../js/popper.min.js"> </script> Estas lineas son necesarias para que funcione el MODAL-->
 <!--<script src="../js/bootstrap.min.js"> </script> Estas lineas son necesarias para que funcione el MODAL-->
 <script src="{{url_for('static', filename = 'js/jquery-3.5.1.min.js')}}"></script>
   <script src="{{url_for('static', filename = 'js/popper.min.js')}}"></script>
   <script src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
+
 <!-- Estas lineas son necesarias para que funcione el MODAL-->
   </body>
 </html>

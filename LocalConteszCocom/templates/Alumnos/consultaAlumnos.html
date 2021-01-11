@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
-      <link rel="stylesheet" href="{{url_for('static',filename='css/estilo.css')}}">
-      <script src="{{url_for('static',filename='js/alumnos.js')}}"></script>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/estilo.css')}}">
+    <script src="../js/alumnos.js"></script>
     <title>Alumnos</title>
   </head>
   <body>
@@ -13,7 +13,7 @@
 <header><!-- Aquí empieza el MENU -->
           <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
           <!-- Brand -->
-          <a class="navbar-brand" href="../principal.html">Local Programming Contesz</a>
+          <a class="navbar-brand" href="/">Local Programming Contesz</a>
 
                 <!-- Links -->
                 <ul class="navbar-nav ml-auto">
@@ -24,8 +24,8 @@
                       </a>
 
                       <div class="dropdown-menu">
-                        <a class="dropdown-item" href="../Docentes/consultaDocentes.html">Docentes</a>
-                        <a class="dropdown-item" href="consultaUsuarios.html">Usuarios</a>
+                        <a class="dropdown-item" href="/docentes">Docentes</a>
+                        <a class="dropdown-item" href="/usuarios">Usuarios</a>
                       </div>
                   </li>
 
@@ -48,7 +48,7 @@
                           </a>
 
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" href="../Alumnos/consultaAlumnos.html">Alumnos</a>
+                            <a class="dropdown-item" href="/alumnos">Alumnos</a>
                             <a class="dropdown-item" href="../Equipos/consultaEquipos.html">Equipos</a>
                             <a class="dropdown-item" href="../Carreras/consultaCarreras.html">Carreras</a>
                           </div>
@@ -66,11 +66,10 @@
                                 <a class="dropdown-item" href="../Problemas_Resueltos/consultaProblemasResueltos.html">Problemas Resueltos</a>
                               </div>
                       </li>
-                        {% if current_user.is_authenticated %}
+
                       <li class="nav-item">
-                        <a  class="nav-link btn btn-secondary" href="/logout">CERRAR SESIÓN</a>
+                        <a data-toggle="modal" data-target="#myModalIniciarSesion" class="nav-link btn btn-secondary" href="#">INICIAR SESIÓN</a>
                       </li>
-                        {% endif %}
                 </ul>
           </nav>
 </header><!-- Aquí Termina el MENU -->
@@ -102,10 +101,8 @@
     <section>
         <div class="container">
             <h1>LISTA DE ALUMNOS</h1>
-             {% if current_user.is_authenticated and current_user.is_admin() %}
-            <button onclick="nuevo()" class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModalAltaAlumnos">Registrar Alumno</button>
-            {% endif %}
-            <table class="table table-bordered" id="datos">
+            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModalAltaAlumnos">Registrar Alumno</button>
+            <table class="table table-bordered">
                 <th>No. Control</th>
                 <th>No. Usuario</th>
                 <th>Semestre</th>
@@ -158,12 +155,11 @@
 
       <!-- Modal body -->
       <div class="modal-body">
-        <form action="{{url_for('insertAlumnos')}}" method="POST"><!-- En esta parte llamas al metodo que realiza las validaciones -->
-       <!-- <form onsubmit="return validar(this)">
+        <form action="{{url_for('insertAlumnos')}}" method="POST">
                   <div class="form-group">
                     <label>No. Control:</label>
                     <input class="form-control" type="number" name="nocontrol">
-                  </div>-->
+                  </div>
 
                   <div class="form-group">
                     <label>No. Usuario:</label>
@@ -198,7 +194,7 @@
 <!-- Aquí Termina la parte del  Modal AGREGAR --------------------------------------------------------------------->
 
 <!-- Aquí empieza Modal EDITAR ------------------------------------------------------------------------------------>
-<div class="modal" id="myModalEditarAlumno">
+<div class="modal" id="myModalEditarAlumno{{row.id}}">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -211,26 +207,25 @@
       <!-- Modal body -->
       <div class="modal-body">
         <form action="{{url_for('actualizarAlumnos')}}" method="POST">
-       <!-- <form onsubmit="return validar(this)">
-            <div class="form-group">
-                <label>No. Control:</label>
-                <input id="nocontrol" class="form-control" type="number" name="nocontrol">
-              </div>-->
+           <div class="form-group">
+                    <label>No. Control:</label>
+                    <input id="id" class="form-control" type="number" name="id" value="{{row.id}}">
+                  </div>
 
-              <div class="form-group">
-                <label>No. Usuario:</label><!--DUDA AQUI ID-->
-                <input id="nousuario" class="form-control" type="number" name="nousuario" value="{{row.nousuario}}" placeholder="No. Usuario">
-              </div>
+                  <div class="form-group">
+                    <label>No. Usuario:</label>
+                    <input id="nousuario" class="form-control" type="number" name="nousuario" value="{{row.nousuario}}">
+                  </div>
 
-              <div class="form-group">
-                <label>Semestre:</label>
-                <input id="semestre" class="form-control" type="number" name="semestre" value="{{row.semestre}}" placeholder="# Semestre">
-              </div>
+                  <div class="form-group">
+                    <label>Semestre:</label>
+                    <input id="semestre" class="form-control" type="number" name="semestre" value="{{row.semestre}}">
+                  </div>
 
-              <div class="form-group">
-                <label>Id Carrera:</label>
-                <input id="idcarrera" class="form-control" type="number" name="idcarrera" value="{{row.idcarrera}}" placeholder="Id Carrera">
-              </div>
+                  <div class="form-group">
+                    <label>Id Carrera:</label>
+                    <input id="idcarrera" class="form-control" type="number" name="idcarrera" value="{{row.idcarrera}}">
+                  </div>
 
               <div style="color:red" id="notificacioneseditar">
 
@@ -321,13 +316,9 @@
 
 
 <!-- Estas lineas son necesarias para que funcione el MODAL-->
-<!--<script src="../js/jquery-3.5.1.min.js"> </script> Estas lineas son necesarias para que funcione el MODAL-->
-<!--<script src="../js/popper.min.js"> </script> Estas lineas son necesarias para que funcione el MODAL-->
-<!--<script src="../js/bootstrap.min.js"> </script> Estas lineas son necesarias para que funcione el MODAL-->
 <script src="{{url_for('static', filename = 'js/jquery-3.5.1.min.js')}}"></script>
   <script src="{{url_for('static', filename = 'js/popper.min.js')}}"></script>
   <script src="{{url_for('static', filename = 'js/bootstrap.min.js')}}"></script>
-
 <!-- Estas lineas son necesarias para que funcione el MODAL-->
   </body>
 </html>
