@@ -270,42 +270,49 @@ def consultarAlumnos():
     return render_template("Alumnos/consultaAlumnos.html", alumnos = all_alumnos)
 #-----------------------------------ALUMNOS ALUMNOS ALUMNOS ALUMNOS ALUMNOS ALUMNOS---------------------------
 
+#-----------------------------------CATEGORIAS CATEGORIAS CATEGORIAS CATEGORIAS CAEGORIAS CATEGORIAS---------------------------
 
-'''
 
-#CATEGORIAS//////////////////////////////////////////////////////////
 class Categorias (db.Model):
     id = db.Column(db.Integer, primary_key = True)
     nombre = db.Column(db.String(50))
-    semestreLimite = db.Column(db.Integer)
+    semestrelimite = db.Column(db.Integer)
 
-    def __init__(self, nombre, semestreLimite):
+    def __init__(self, nombre, semestrelimite):
         self.nombre = nombre
-        self.semestreLimite = semestreLimite
+        self.semestrelimite = semestrelimite
 
 @app.route('/insertCategorias', methods = ['POST'])
 def insertCategorias():
 
     if request.method == 'POST':
         nombre = request.form['nombre']
-        semestreLimite = request.form['semestreLimite']
+        semestrelimite = request.form['semestrelimite']
 
-        my_categoria = Categorias(nombre,semestreLimite)
+        my_categoria = Categorias(nombre,semestrelimite)
         db.session.add(my_categoria)
         db.session.commit()
 
         return redirect(url_for('consultarCategorias'))
 
+
 @app.route('/actualizarCategorias', methods=['GET', 'POST'])
 def actualizarCategorias():
     if request.method == 'POST':
         my_categoria = Categorias.query.get(request.form.get('id'))
+
         my_categoria.nombre = request.form['nombre']
-        my_categoria.semestreLimite = request.form['semestreLimite']
+        my_categoria.semestrelimite = request.form['semestrelimite']
 
         db.session.commit()
 
         return redirect(url_for('consultarCategorias'))
+
+@app.route('/categorias')
+def consultarCategorias():
+    all_categorias = Categorias.query.all()
+    return render_template("Categorias/consultaCategorias.html", categorias = all_categorias)
+
 
 @app.route('/eliminarCategorias/<id>/', methods=['GET', 'POST'])
 def eliminarCategorias(id):
@@ -314,7 +321,178 @@ def eliminarCategorias(id):
     db.session.commit()
 
     return redirect(url_for('consultarCategorias'))
-#--------------------------------------------------------------------------
+
+
+
+#-----------------------------------CATEGORIAS CATEGORIAS CATEGORIAS CATEGORIAS CATEGORIAS CATEGORIAS---------------------------
+
+
+#-----------------------------------CARRERAS CARRERAS CARRERAS CARRERAS CARRERAS CARRERAS  CARRERAS---------------------------
+
+class Carreras (db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    nombre = db.Column(db.String(50))
+    siglas = db.Column(db.String(5))
+
+    def __init__(self, nombre, siglas):
+        self.nombre = nombre
+        self.siglas = siglas
+
+@app.route('/insertCarreras', methods = ['POST'])
+def insertCarreras():
+
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        siglas = request.form['siglas']
+
+        my_carrera = Carreras(nombre,siglas)
+        db.session.add(my_carrera)
+        db.session.commit()
+
+        return redirect(url_for('consultarCarreras'))
+
+
+@app.route('/carreras')
+def consultarCarreras():
+    #all_carreras = Carreras.query.all()
+    return render_template("Carreras/consultaCarreras.html")
+
+#-----------------------------------CARRERAS CARRERAS CARRERAS CARRERAS CARRERAS CARRERAS  CARRERAS---------------------------
+
+
+#-----------------------------------EVENTOS EVENTOS EVENTOS EVENTOS EVENTOS EVENTOS  EVENTOS---------------------------
+class EdicionEventos (db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    nombre = db.Column(db.String(50))
+    fecharegistro = db.Column(db.Date)
+    fechaevento = db.Column(db.Date)
+    horainicio = db.Column(db.Time)
+    horafin = db.Column(db.Time)
+
+    def __init__(self,nombre,fecharegistro,fechaevento,horainicio,horafin):
+        self.nombre = nombre
+        self.fecharegistro = fecharegistro
+        self.fechaevento = fechaevento
+        self.horainicio = horainicio
+        self.horafin = horafin
+
+
+@app.route('/insertEdicionEventos', methods = ['POST'])
+def insertEdicionEventos():
+
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        fecharegistro = request.form['fecharegistro']
+        fechaevento = request.form['fechaevento']
+        horainicio = request.form['horainicio']
+        horafin = request.form['horafin']
+
+        my_edicioneventos = EdicionEventos(nombre,fecharegistro,fechaevento,horainicio,horafin)
+        db.session.add(my_edicioneventos)
+        db.session.commit()
+
+        return redirect(url_for('consultarEdicionEventos'))
+
+@app.route('/edicioneventos')
+def consultarEdicionEventos():
+    #all_edicioneventos =  EdicionEventos.query.all()
+    return render_template("Edicion_Eventos/consultaEdicionEventos.html")
+
+#-----------------------------------EVENTOS EVENTOS EVENTOS EVENTOS EVENTOS EVENTOS  EVENTOS---------------------------
+
+
+#-----------------------------------EQUIPOS EQUIPOS EQUIPOS EQUIPOS EQUIPOS EQUIPOS  EQUIPOS---------------------------
+class Equipos (db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    nombre = db.Column(db.String(50))
+    nodocente = db.Column(db.Integer, foreign_key=True)
+    puntosobtenidos = db.Column(db.Integer)
+    problemasresueltos = db.Column(db.Integer)
+    nocontrol1 = db.Column(db.String(50))
+    nocontrol2 = db.Column(db.String(50))
+    nocontrol3 = db.Column(db.String(50))
+    idcategoria = db.Column(db.Date, foreign_key=True)
+    idedicion = db.Column(db.Date, foreign_key=True)
+
+    def __init__(self,nombre,nodocente,puntosobtenidos,problemasresueltos,nocontrol1,nocontrol2,nocontrol3,idcategoria,idedicion):
+        self.nombre = nombre
+        self.nodocente=nodocente
+        self.puntosobtenidos=puntosobtenidos
+        self.problemasresueltos=problemasresueltos
+        self.nocontrol1=nocontrol1
+        self.nocontrol2=nocontrol2
+        self.nocontrol3=nocontrol3
+        self.idcategoria=idcategoria
+        self.idedicion=idedicion
+
+@app.route('/insertEquipos', methods = ['POST'])
+def insertEquipos():
+
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        nodocente=request.form['nodocente']
+        puntosobtenidos=request.form['puntosobtenidos']
+        problemasresueltos=request.form['problemasresueltos']
+        nocontrol1=request.form['nocontrol1']
+        nocontrol2=request.form['nocontrol2']
+        nocontrol3=request.form['nocontrol3']
+        idcategoria=request.form['idcategoria']
+        idedicion=request.form['idedicion']
+
+        my_equipo = Equipos(nombre, nodocente,puntosobtenidos,problemasresueltos,nocontrol1,nocontrol2,nocontrol3,idcategoria,idedicion)
+        db.session.add(my_equipo)
+        db.session.commit()
+
+        return redirect(url_for('consultarEquipos'))
+
+
+@app.route('/equipos')
+def consultarEquipos():
+    all_equipos = Equipos.query.all()
+    return render_template("Equipos/consultaEquipos.html", equipos = all_equipos)
+
+#-----------------------------------EQUIPOS EQUIPOS EQUIPOS EQUIPOS EQUIPOS EQUIPOS  EQUIPOS---------------------------
+
+
+#-----------------------------------PROBLEMAS PROBLEMAS PROBLEMAS PROBLEMAS PROBLEMAS PROBLEMAS PROBLEMAS---------------------------
+
+class Problemas (db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    nombreproblema = db.Column(db.String(50))
+    puntos = db.Column(db.Integer)
+    tiempomaximo=db.Column(db.Integer)
+    descripcion=db.Column(db.String(200))
+
+    def __init__(self, nombreproblema, puntos,tiempomaximo,descripcion):
+        self.nombreproblema = nombreproblema
+        self.puntos = puntos
+        self.tiempomaximo=tiempomaximo
+        self.descripcion=descripcion
+
+@app.route('/insertProblemas', methods = ['POST'])
+def insertProblemas():
+
+    if request.method == 'POST':
+        nombreproblema = request.form['nombreproblema']
+        puntos = request.form['puntos']
+        tiempomaximo = request.form['tiempomaximo']
+        descripcion = request.form['descripcion']
+
+
+        my_problema = Problemas(nombreproblema,puntos,tiempomaximo,descripcion)
+        db.session.add(my_problema)
+        db.session.commit()
+
+        return redirect(url_for('consultarProblemas'))
+
+@app.route('/problemas')
+def consultarProblemas():
+    #all_problemas = Problemas.query.all()
+    return render_template("Problemas/consultaProblemas.html")
+#-----------------------------------PROBLEMAS PROBLEMAS PROBLEMAS PROBLEMAS PROBLEMAS PROBLEMAS PROBLEMAS---------------------------
+
+
+'''
 
 #CARRERAS/////////////////////////////////////
 class Carreras (db.Model):
@@ -633,21 +811,12 @@ def eliminarProblemasResueltos(id):
 
     return redirect(url_for('consultarProblemasResueltos'))
 #----------------------------------------------------------------
-@app.route('/docentes')
-def consultarDocentes():
-    all_docentes = Docentes.query.all()
-    return render_template("Docentes/consultaDocentes.html", docentes=all_docentes)
 
 
-@app.route('/usuarios')
-def consultarUsuarios():
-    all_usuarios = Usuarios.query.all()
-    return render_template("Usuarios/consultaUsuarios.html", usuarios = all_usuarios)
 
-@app.route('/alumnos')
-def consultarAlumnos():
-    all_alumnos = Alumnos.query.all()
-    return render_template("Alumnos/consultaAlumnos.html", alumnos=all_alumnos)
+
+
+
 
 @app.route('/carreras')
 def consultarCarreras():
