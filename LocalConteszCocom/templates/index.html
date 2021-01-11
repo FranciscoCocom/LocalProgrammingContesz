@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-
+    <script src="{{url_for('static', filename = 'js/funcionAjax.js')}}"></script>
+    <script src="{{url_for('static', filename = 'js/jquery-3.5.1.min.js')}}"></script>
 </head>
 <body>
-        <form action="/login" method="post">
+        <form action="/login" method="post" id="login" enctype="multipart/form-data">
             <div class="form-group">
                     <label>Email:</label>
                     <input id="correo" class="form-control" type="text" name="correo" placeholder="ejemplo@ejemplo" maxlength="100" >
