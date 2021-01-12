@@ -357,6 +357,25 @@ def consultarCarreras():
     #all_carreras = Carreras.query.all()
     return render_template("Carreras/consultaCarreras.html")
 
+@app.route('/actualizarCarreras', methods=['GET', 'POST'])
+def actualizarCarreras():
+    if request.method == 'POST':
+        my_carrera = Carreras.query.get(request.form.get('id'))
+        my_carrera.nombre = request.form['nombre']
+        my_carrera.siglas = request.form['siglas']
+
+        db.session.commit()
+
+        return redirect(url_for('consultarCarreras'))
+
+@app.route('/eliminarCarreras/<id>/', methods=['GET', 'POST'])
+def eliminarCarreras(id):
+    my_carrera = Carreras.query.get(id)
+    db.session.delete(my_carrera)
+    db.session.commit()
+
+    return redirect(url_for('consultarCarreras'))
+
 #-----------------------------------CARRERAS CARRERAS CARRERAS CARRERAS CARRERAS CARRERAS  CARRERAS---------------------------
 
 
@@ -395,8 +414,30 @@ def insertEdicionEventos():
 
 @app.route('/edicioneventos')
 def consultarEdicionEventos():
-    #all_edicioneventos =  EdicionEventos.query.all()
-    return render_template("Edicion_Eventos/consultaEdicionEventos.html")
+    all_edicioneventos =  EdicionEventos.query.all()
+    return render_template("Edicion_Eventos/consultaEdicionEventos.html", edicioneventos = all_edicioneventos)
+
+@app.route('/actualizarEdicionEventos', methods=['GET', 'POST'])
+def actualizarEdicionEventos():
+    if request.method == 'POST':
+
+        my_edicioneventos = EdicionEventos.query.get(request.form.get('id'))
+        my_edicioneventos.nombre = request.form['nombre']
+        my_edicioneventos.fecharegistro = request.form['fecharegistro']
+        my_edicioneventos.fechaevento = request.form['fechaevento']
+        my_edicioneventos.horainicio = request.form['horainicio']
+        my_edicioneventos.horafin = request.form['horafin']
+        db.session.commit()
+
+        return redirect(url_for('consultarEdicionEventos'))
+
+@app.route('/eliminarEdicionEventos/<id>/', methods=['GET', 'POST'])
+def eliminarEdicionEventos(id):
+    my_edicioneventos = EdicionEventos.query.get(id)
+    db.session.delete(my_edicioneventos)
+    db.session.commit()
+
+    return redirect(url_for('consultarEdicionEventos'))
 
 #-----------------------------------EVENTOS EVENTOS EVENTOS EVENTOS EVENTOS EVENTOS  EVENTOS---------------------------
 
@@ -451,6 +492,31 @@ def consultarEquipos():
     all_equipos = Equipos.query.all()
     return render_template("Equipos/consultaEquipos.html", equipos = all_equipos)
 
+@app.route('/actualizarEquipos', methods=['GET', 'POST'])
+def actualizarEquipos():
+    if request.method == 'POST':
+        my_equipo = EdicionEventos.query.get(request.form.get('id'))
+        my_equipo.nombre = request.form['nombre']
+        my_equipo.nodocente = request.form['nodocente']
+        my_equipo.puntosobtenidos = request.form['puntosobtenidos']
+        my_equipo.problemasresueltos = request.form['problemasresueltos']
+        my_equipo.nocontrolintegrante1 = request.form['nocontrolintegrante1']
+        my_equipo.nocontrolintegrante2 = request.form['nocontrolintegrante2']
+        my_equipo.nocontrolintegrante3 = request.form['nocontrolintegrante3']
+        my_equipo.idcategoria = request.form['idcategoria']
+        my_equipo.idedicion = request.form['idedicion']
+        db.session.commit()
+
+        return redirect(url_for('consultarEquipos'))
+
+@app.route('/eliminarEquipos/<id>/', methods=['GET', 'POST'])
+def eliminarEquipos(id):
+    my_equipo = Equipos.query.get(id)
+    db.session.delete(my_equipo)
+    db.session.commit()
+
+    return redirect(url_for('consultarEquipos'))
+
 #-----------------------------------EQUIPOS EQUIPOS EQUIPOS EQUIPOS EQUIPOS EQUIPOS  EQUIPOS---------------------------
 
 
@@ -489,9 +555,130 @@ def insertProblemas():
 def consultarProblemas():
     #all_problemas = Problemas.query.all()
     return render_template("Problemas/consultaProblemas.html")
+
+@app.route('/actualizarProblemas', methods=['GET', 'POST'])
+def actualizarProblemas():
+    if request.method == 'POST':
+        my_problema = Problemas.query.get(request.form.get('id'))
+        my_problema.nombreproblema = request.form['nombreproblema']
+        my_problema.puntos = request.form['puntos']
+        my_problema.tiempomaximo = request.form['tiempomaximo']
+        my_problema.descripcion = request.form['descripcion']
+
+        db.session.commit()
+
+        return redirect(url_for('consultarProblemas'))
+
+@app.route('/eliminarProblemas/<id>/', methods=['GET', 'POST'])
+def eliminarProblemas(id):
+    my_problema = Problemas.query.get(id)
+    db.session.delete(my_problema)
+    db.session.commit()
+
+    return redirect(url_for('consultarProblemas'))
 #-----------------------------------PROBLEMAS PROBLEMAS PROBLEMAS PROBLEMAS PROBLEMAS PROBLEMAS PROBLEMAS---------------------------
 
+#------------PROBLEMASPROPUESTOS PROBLEMASPROPUESTOS PROBLEMASPROPUESTOS PROBLEMASPROPUESTOS PROBLEMASPROPUESTOS -------------------
+class ProblemasPropuestos (db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    noproblemas = db.Column(db.Integer,foreing_key=True)
+    noedicion = db.Column(db.Integer,foreing_key=True)
+    color=db.Column(db.String(7))
 
+    def __init__(self, noproblemas, noedicion,color):
+        self.noproblemas = noproblemas
+        self.noedicion = noedicion
+        self.color=color
+
+@app.route('/insertProblemasPropuestos', methods = ['POST'])
+def insertProblemasPropuestos():
+
+    if request.method == 'POST':
+        noproblemas = request.form['noproblemas']
+        noedicion = request.form['noedicion']
+        color = request.form['color']
+
+        my_problemapropuesto = Problemas(noproblemas,noedicion,color)
+        db.session.add(my_problemapropuesto)
+        db.session.commit()
+
+        return redirect(url_for('consultarProblemasPropuestos'))
+
+@app.route('/actualizarProblemasPropuestos', methods=['GET', 'POST'])
+def actualizarProblemasPropuestos():
+    if request.method == 'POST':
+        my_problemapropuesto = ProblemasPropuestos.query.get(request.form.get('id'))
+        my_problemapropuesto.noproblemas = request.form['noproblemas']
+        my_problemapropuesto.noedicion = request.form['noedicion']
+        my_problemapropuesto.color = request.form['color']
+
+        db.session.commit()
+
+        return redirect(url_for('consultarProblemasPropuestos'))
+
+@app.route('/eliminarProblemasPropuestos/<id>/', methods=['GET', 'POST'])
+def eliminarProblemasPropuestos(id):
+    my_problemapropuesto = ProblemasPropuestos.query.get(id)
+    db.session.delete(my_problemapropuesto)
+    db.session.commit()
+
+    return redirect(url_for('consultarProblemasPropuestos'))
+
+#------------PROBLEMASPROPUESTOS PROBLEMASPROPUESTOS PROBLEMASPROPUESTOS PROBLEMASPROPUESTOS PROBLEMASPROPUESTOS -------------------
+
+#------------PROBLEMASRESUELTOS PROBLEMASRESUELTOS PROBLEMASRESUELTOS PROBLEMASRESUELTOS PROBLEMASRESUELTOS -------------------
+class ProblemasResueltos (db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    tiempoejecucion = db.Column(db.Time)
+    noequipo = db.Column(db.Integer,foreign_key=True)
+    puntos=db.Column(db.Integer)
+    noproblemaspropuestos=db.Column(db.Integer,foreign_key=True)
+
+    def __init__(self, tiempoejecucion, noequipo,puntos,noproblemaspropuestos):
+        self.tiempoejecucion = tiempoejecucion
+        self.noequipo=noequipo
+        self.puntos = puntos
+        self.noproblemaspropuestos=noproblemaspropuestos
+
+@app.route('/insertProblemasResueltos', methods = ['POST'])
+def insertProblemasResueltos():
+
+    if request.method == 'POST':
+        tiempoejecucion = request.form['tiempoejecucion']
+        noequipo = request.form['noequipo']
+        puntos = request.form['puntos']
+        noproblemaspropuestos = request.form['noproblemaspropuestos']
+
+
+        my_problemaresuelto = ProblemasResueltos(tiempoejecucion,noequipo,puntos,noproblemaspropuestos)
+        db.session.add(my_problemaresuelto)
+        db.session.commit()
+
+        return redirect(url_for('consultarProblemasResueltos'))
+
+@app.route('/actualizarProblemasResueltos', methods=['GET', 'POST'])
+def actualizarProblemasResueltos():
+    if request.method == 'POST':
+        my_problemaresuelto = ProblemasResueltos.query.get(request.form.get('id'))
+        my_problemaresuelto.teimpoejecucion = request.form['tiempoejecucion']
+        my_problemaresuelto.noequipo = request.form['noequipo']
+        my_problemaresuelto.puntos = request.form['puntos']
+        my_problemaresuelto.problemaspropuestos = request.form['problemaspropuestos']
+
+        db.session.commit()
+
+        return redirect(url_for('consultarProblemasResueltos'))
+
+@app.route('/eliminarProblemasResueltos/<id>/', methods=['GET', 'POST'])
+def eliminarProblemasResueltos(id):
+    my_problemaresuelto = ProblemasResueltos.query.get(id)
+    db.session.delete(my_problemaresuelto)
+    db.session.commit()
+
+    return redirect(url_for('consultarProblemasResueltos'))
+
+
+#------------PROBLEMASRESUELTOS PROBLEMASRESUELTOS PROBLEMASRESUELTOS PROBLEMASRESUELTOS PROBLEMASRESUELTOS -------------------
 '''
 
 #CARRERAS/////////////////////////////////////
@@ -852,7 +1039,7 @@ def consultarProblemasPropuestos():
 def consultarProblemasResueltos():
     all_problemasresueltos = ProblemasResueltos.query.all()
     return render_template("ProblemasResueltos/consultaProblemasResueltos.html",problemasresueltos=all_problemasresueltos)
-
+'''
 @app.errorhandler(404)
 def error_404(e):
     return render_template('comunes/error_404.html'), 404
@@ -861,6 +1048,6 @@ def error_404(e):
 @app.errorhandler(500)
 def error_500(e):
     return render_template('comunes/error_500.html'), 500
-'''
+
 if __name__ == "__main__":
     app.run(debug=True)
