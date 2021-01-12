@@ -679,7 +679,7 @@ def eliminarProblemasResueltos(id):
 
 
 #------------PROBLEMASRESUELTOS PROBLEMASRESUELTOS PROBLEMASRESUELTOS PROBLEMASRESUELTOS PROBLEMASRESUELTOS -------------------
-'''
+
 
 #CARRERAS/////////////////////////////////////
 class Carreras (db.Model):
@@ -1039,7 +1039,7 @@ def consultarProblemasPropuestos():
 def consultarProblemasResueltos():
     all_problemasresueltos = ProblemasResueltos.query.all()
     return render_template("ProblemasResueltos/consultaProblemasResueltos.html",problemasresueltos=all_problemasresueltos)
-'''
+
 @app.errorhandler(404)
 def error_404(e):
     return render_template('comunes/error_404.html'), 404
